@@ -1,0 +1,27 @@
+{
+    "server": {
+        "port": 8080,
+        "threads": 4
+    },
+    "database": {
+        "type": "file",
+        "file": {
+            "path": "./data/face_database.txt"
+        },
+        "mysql": {
+            "host": "127.0.0.1",
+            "port": 3306,
+            "user": "root",
+            "password": "Admin123456",
+            "database": "facelibre"
+        }
+    },
+    "models": {
+        "detector": "./models/face_detection_yunet_2023mar_int8.onnx",
+        "recognizer": "./models/face_recognition_sface_2021dec.onnx"
+    },
+    "recognition": {
+        "threshold": 0.4,
+        "min_gap": 0.08
+    }
+}

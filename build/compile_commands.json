@@ -1,0 +1,656 @@
+[
+{
+  "directory": "/home/cvedix/FaceLibre/build",
+  "command": "/usr/bin/c++  -I/home/cvedix/FaceLibre/include -I/home/cvedix/FaceLibre/src -I/usr/include/uuid -I/usr/include/mysql -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/json-src/include -isystem /usr/local/include/opencv4 -isystem /usr/include/jsoncpp -O3 -DNDEBUG -std=gnu++17 -fPIE -o CMakeFiles/face_api_server.dir/src/main.cpp.o -c /home/cvedix/FaceLibre/src/main.cpp",
+  "file": "/home/cvedix/FaceLibre/src/main.cpp",
+  "output": "CMakeFiles/face_api_server.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build",
+  "command": "/usr/bin/c++  -I/home/cvedix/FaceLibre/include -I/home/cvedix/FaceLibre/src -I/usr/include/uuid -I/usr/include/mysql -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/json-src/include -isystem /usr/local/include/opencv4 -isystem /usr/include/jsoncpp -O3 -DNDEBUG -std=gnu++17 -fPIE -o CMakeFiles/face_api_server.dir/src/face_database.cpp.o -c /home/cvedix/FaceLibre/src/face_database.cpp",
+  "file": "/home/cvedix/FaceLibre/src/face_database.cpp",
+  "output": "CMakeFiles/face_api_server.dir/src/face_database.cpp.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build",
+  "command": "/usr/bin/c++  -I/home/cvedix/FaceLibre/include -I/home/cvedix/FaceLibre/src -I/usr/include/uuid -I/usr/include/mysql -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/json-src/include -isystem /usr/local/include/opencv4 -isystem /usr/include/jsoncpp -O3 -DNDEBUG -std=gnu++17 -fPIE -o CMakeFiles/face_api_server.dir/src/face_service.cpp.o -c /home/cvedix/FaceLibre/src/face_service.cpp",
+  "file": "/home/cvedix/FaceLibre/src/face_service.cpp",
+  "output": "CMakeFiles/face_api_server.dir/src/face_service.cpp.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/AOPAdvice.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/AOPAdvice.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/AOPAdvice.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/AOPAdvice.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/AccessLogger.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/AccessLogger.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/AccessLogger.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/AccessLogger.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/CacheFile.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/CacheFile.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/CacheFile.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/CacheFile.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/ConfigAdapterManager.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/ConfigAdapterManager.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/ConfigAdapterManager.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/ConfigAdapterManager.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/ConfigLoader.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/ConfigLoader.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/ConfigLoader.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/ConfigLoader.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/Cookie.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/Cookie.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/Cookie.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/Cookie.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/DrClassMap.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/DrClassMap.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/DrClassMap.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/DrClassMap.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/DrTemplateBase.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/DrTemplateBase.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/DrTemplateBase.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/DrTemplateBase.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/MiddlewaresFunction.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/MiddlewaresFunction.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/MiddlewaresFunction.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/MiddlewaresFunction.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/FixedWindowRateLimiter.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/FixedWindowRateLimiter.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/FixedWindowRateLimiter.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/FixedWindowRateLimiter.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/GlobalFilters.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/GlobalFilters.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/GlobalFilters.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/GlobalFilters.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/Histogram.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/Histogram.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/Histogram.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/Histogram.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/Hodor.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/Hodor.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/Hodor.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/Hodor.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpAppFrameworkImpl.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpAppFrameworkImpl.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpAppFrameworkImpl.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpAppFrameworkImpl.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpBinder.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpBinder.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpBinder.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpBinder.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpClientImpl.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpClientImpl.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpClientImpl.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpClientImpl.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpConnectionLimit.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpConnectionLimit.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpConnectionLimit.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpConnectionLimit.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpControllerBinder.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpControllerBinder.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpControllerBinder.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpControllerBinder.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpControllersRouter.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpControllersRouter.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpControllersRouter.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpControllersRouter.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpFileImpl.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpFileImpl.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpFileImpl.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpFileImpl.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpFileUploadRequest.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpFileUploadRequest.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpFileUploadRequest.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpFileUploadRequest.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpRequestImpl.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpRequestImpl.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpRequestImpl.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpRequestImpl.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpRequestParser.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpRequestParser.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpRequestParser.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpRequestParser.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/RequestStream.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RequestStream.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RequestStream.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/RequestStream.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpResponseImpl.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpResponseImpl.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpResponseImpl.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpResponseImpl.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpResponseParser.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpResponseParser.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpResponseParser.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpResponseParser.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpServer.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpServer.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpServer.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpServer.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpUtils.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpUtils.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpUtils.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpUtils.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/HttpViewData.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpViewData.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/HttpViewData.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/HttpViewData.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/IntranetIpFilter.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/IntranetIpFilter.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/IntranetIpFilter.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/IntranetIpFilter.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/JsonConfigAdapter.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/JsonConfigAdapter.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/JsonConfigAdapter.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/JsonConfigAdapter.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/ListenerManager.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/ListenerManager.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/ListenerManager.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/ListenerManager.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/LocalHostFilter.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/LocalHostFilter.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/LocalHostFilter.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/LocalHostFilter.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/MultiPart.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/MultiPart.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/MultiPart.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/MultiPart.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/MultipartStreamParser.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/MultipartStreamParser.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/MultipartStreamParser.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/MultipartStreamParser.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/NotFound.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/NotFound.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/NotFound.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/NotFound.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/PluginsManager.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/PluginsManager.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/PluginsManager.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/PluginsManager.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/PromExporter.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/PromExporter.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/PromExporter.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/PromExporter.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/RangeParser.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RangeParser.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RangeParser.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/RangeParser.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/RateLimiter.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RateLimiter.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RateLimiter.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/RateLimiter.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/RealIpResolver.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RealIpResolver.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RealIpResolver.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/RealIpResolver.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/SecureSSLRedirector.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/SecureSSLRedirector.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/SecureSSLRedirector.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/SecureSSLRedirector.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/Redirector.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/Redirector.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/Redirector.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/Redirector.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/SessionManager.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/SessionManager.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/SessionManager.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/SessionManager.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/SlashRemover.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/SlashRemover.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/SlashRemover.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/SlashRemover.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/SlidingWindowRateLimiter.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/SlidingWindowRateLimiter.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/SlidingWindowRateLimiter.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/SlidingWindowRateLimiter.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/StaticFileRouter.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/StaticFileRouter.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/StaticFileRouter.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/StaticFileRouter.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/TaskTimeoutFlag.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/TaskTimeoutFlag.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/TaskTimeoutFlag.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/TaskTimeoutFlag.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/TokenBucketRateLimiter.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/TokenBucketRateLimiter.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/TokenBucketRateLimiter.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/TokenBucketRateLimiter.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/Utilities.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/Utilities.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/Utilities.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/Utilities.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/WebSocketClientImpl.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/WebSocketClientImpl.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/WebSocketClientImpl.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/WebSocketClientImpl.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/WebSocketConnectionImpl.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/WebSocketConnectionImpl.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/WebSocketConnectionImpl.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/WebSocketConnectionImpl.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/YamlConfigAdapter.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/YamlConfigAdapter.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/YamlConfigAdapter.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/YamlConfigAdapter.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/drogon_test.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/drogon_test.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/drogon_test.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/drogon_test.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/SharedLibManager.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/SharedLibManager.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/SharedLibManager.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/SharedLibManager.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/RedisClientSkipped.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RedisClientSkipped.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RedisClientSkipped.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/RedisClientSkipped.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/RedisResultSkipped.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RedisResultSkipped.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RedisResultSkipped.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/RedisResultSkipped.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/RedisClientManagerSkipped.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RedisClientManagerSkipped.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/RedisClientManagerSkipped.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/RedisClientManagerSkipped.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/ArrayParser.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/ArrayParser.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/ArrayParser.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/ArrayParser.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/Criteria.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/Criteria.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/Criteria.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/Criteria.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/DbClient.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/DbClient.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/DbClient.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/DbClient.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/DbClientImpl.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/DbClientImpl.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/DbClientImpl.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/DbClientImpl.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/DbClientLockFree.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/DbClientLockFree.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/DbClientLockFree.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/DbClientLockFree.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/DbConnection.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/DbConnection.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/DbConnection.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/DbConnection.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/DbListener.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/DbListener.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/DbListener.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/DbListener.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/Exception.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/Exception.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/Exception.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/Exception.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/Field.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/Field.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/Field.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/Field.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/Result.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/Result.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/Result.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/Result.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/Row.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/Row.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/Row.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/Row.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/SqlBinder.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/SqlBinder.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/SqlBinder.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/SqlBinder.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/TransactionImpl.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/TransactionImpl.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/TransactionImpl.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/TransactionImpl.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/orm_lib/src/RestfulController.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/RestfulController.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/src/RestfulController.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/orm_lib/src/RestfulController.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build",
+  "command": "/usr/bin/c++ -DUSE_OSSP_UUID=0 -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/orm_lib/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-src/nosql_lib/redis/inc -I/home/cvedix/FaceLibre/build/_deps/drogon-build -I/home/cvedix/FaceLibre/build/_deps/drogon-build/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -isystem /usr/include/jsoncpp -isystem /usr/include/uuid -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/drogon.dir/lib/src/DbClientManagerSkipped.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/DbClientManagerSkipped.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/lib/src/DbClientManagerSkipped.cc",
+  "output": "_deps/drogon-build/CMakeFiles/drogon.dir/lib/src/DbClientManagerSkipped.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/utils/AsyncFileLogger.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/AsyncFileLogger.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/AsyncFileLogger.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/utils/AsyncFileLogger.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/utils/ConcurrentTaskQueue.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/ConcurrentTaskQueue.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/ConcurrentTaskQueue.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/utils/ConcurrentTaskQueue.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/utils/Date.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/Date.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/Date.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/utils/Date.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/utils/LogStream.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/LogStream.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/LogStream.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/utils/LogStream.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/utils/Logger.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/Logger.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/Logger.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/utils/Logger.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/utils/MsgBuffer.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/MsgBuffer.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/MsgBuffer.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/utils/MsgBuffer.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/utils/SerialTaskQueue.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/SerialTaskQueue.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/SerialTaskQueue.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/utils/SerialTaskQueue.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/utils/TimingWheel.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/TimingWheel.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/TimingWheel.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/utils/TimingWheel.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/utils/Utilities.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/Utilities.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/Utilities.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/utils/Utilities.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/EventLoop.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/EventLoop.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/EventLoop.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/EventLoop.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/EventLoopThread.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/EventLoopThread.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/EventLoopThread.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/EventLoopThread.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/EventLoopThreadPool.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/EventLoopThreadPool.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/EventLoopThreadPool.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/EventLoopThreadPool.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/InetAddress.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/InetAddress.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/InetAddress.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/InetAddress.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/TcpClient.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/TcpClient.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/TcpClient.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/TcpClient.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/TcpServer.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/TcpServer.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/TcpServer.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/TcpServer.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/Channel.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/Channel.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/Channel.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/Channel.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/Acceptor.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/Acceptor.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/Acceptor.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Acceptor.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/Connector.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/Connector.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/Connector.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Connector.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/Poller.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/Poller.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/Poller.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Poller.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/Socket.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/Socket.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/Socket.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Socket.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/MemBufferNode.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/MemBufferNode.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/MemBufferNode.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/MemBufferNode.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/StreamBufferNode.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/StreamBufferNode.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/StreamBufferNode.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/StreamBufferNode.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/AsyncStreamBufferNode.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/AsyncStreamBufferNode.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/AsyncStreamBufferNode.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/AsyncStreamBufferNode.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/TcpConnectionImpl.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/TcpConnectionImpl.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/TcpConnectionImpl.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/TcpConnectionImpl.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/Timer.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/Timer.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/Timer.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/Timer.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/TimerQueue.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/TimerQueue.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/TimerQueue.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/TimerQueue.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/poller/EpollPoller.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/poller/EpollPoller.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/poller/EpollPoller.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/poller/EpollPoller.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/poller/KQueue.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/poller/KQueue.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/poller/KQueue.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/poller/KQueue.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/poller/PollPoller.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/poller/PollPoller.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/poller/PollPoller.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/poller/PollPoller.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/FileBufferNodeUnix.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/FileBufferNodeUnix.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/FileBufferNodeUnix.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/FileBufferNodeUnix.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/tlsprovider/OpenSSLProvider.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/tlsprovider/OpenSSLProvider.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/tlsprovider/OpenSSLProvider.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/tlsprovider/OpenSSLProvider.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/utils/crypto/openssl.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/crypto/openssl.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils/crypto/openssl.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/utils/crypto/openssl.cc.o"
+},
+{
+  "directory": "/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor",
+  "command": "/usr/bin/c++ -DTRANTOR_TLS_PROVIDER=OpenSSL -DUSE_OPENSSL -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor -I/home/cvedix/FaceLibre/build/_deps/drogon-build/trantor/exports -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/utils -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner -I/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/third_party/wepoll -O3 -DNDEBUG -std=c++14 -fPIC -Wall -Wextra -Werror -o CMakeFiles/trantor.dir/trantor/net/inner/NormalResolver.cc.o -c /home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/NormalResolver.cc",
+  "file": "/home/cvedix/FaceLibre/build/_deps/drogon-src/trantor/trantor/net/inner/NormalResolver.cc",
+  "output": "_deps/drogon-build/trantor/CMakeFiles/trantor.dir/trantor/net/inner/NormalResolver.cc.o"
+}
+]
