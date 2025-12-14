@@ -4,7 +4,7 @@
         "threads": 4
     },
     "database": {
-        "type": "file",
+        "type": "mysql",
         "file": {
             "path": "./data/face_database.txt"
         },
@@ -13,7 +13,8 @@
             "port": 3306,
             "user": "root",
             "password": "Admin123456",
-            "database": "facelibre"
+            "database": "usc",
+            "table": "tc_face_recognition"
         }
     },
     "models": {

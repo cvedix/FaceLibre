@@ -1,0 +1,10 @@
+build/
+.vscode/
+.idea/
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+.DS_Store
+data/face_database.txt

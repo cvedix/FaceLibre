@@ -890,6 +890,7 @@ int main(int argc, char* argv[]) {
     std::string mysql_user = "root";
     std::string mysql_pass = "Admin123456";
     std::string mysql_db = "facelibre";
+    std::string mysql_table = "faces";
     
     std::string models_dir = "./models";
     std::string data_dir = "./data";
@@ -922,6 +923,7 @@ int main(int argc, char* argv[]) {
                         if (mysql.contains("user")) mysql_user = mysql["user"];
                         if (mysql.contains("password")) mysql_pass = mysql["password"];
                         if (mysql.contains("database")) mysql_db = mysql["database"];
+                        if (mysql.contains("table")) mysql_table = mysql["table"];
                     }
                 }
             }
@@ -988,8 +990,8 @@ int main(int argc, char* argv[]) {
 
     // Initialize database based on mode
     if (use_mysql) {
-        std::cout << "📦 Using MySQL database: " << mysql_user << "@" << mysql_host << ":" << mysql_port << "/" << mysql_db << "\n";
-        g_database_mysql = std::make_shared<FaceDatabaseMySQL>(mysql_host, mysql_port, mysql_user, mysql_pass, mysql_db);
+        std::cout << "📦 Using MySQL database: " << mysql_user << "@" << mysql_host << ":" << mysql_port << "/" << mysql_db << " [" << mysql_table << "]\n";
+        g_database_mysql = std::make_shared<FaceDatabaseMySQL>(mysql_host, mysql_port, mysql_user, mysql_pass, mysql_db, mysql_table);
         if (!g_database_mysql->is_connected()) {
             std::cerr << "❌ Failed to connect to MySQL database\n";
             return 1;

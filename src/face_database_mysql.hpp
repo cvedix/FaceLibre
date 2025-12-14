@@ -41,6 +41,7 @@ private:
     std::string user_;
     std::string password_;
     std::string database_;
+    std::string table_name_ = "faces";
     mutable std::mutex mutex_;
     
     // Recognition parameters
@@ -109,8 +110,9 @@ public:
     
     FaceDatabaseMySQL(const std::string& host, int port, 
                       const std::string& user, const std::string& password,
-                      const std::string& database)
-        : host_(host), port_(port), user_(user), password_(password), database_(database) {
+                      const std::string& database, const std::string& table_name = "faces")
+        : host_(host), port_(port), user_(user), password_(password), 
+          database_(database), table_name_(table_name) {
         connect();
     }
 
@@ -177,7 +179,7 @@ public:
         std::string image_id = generate_uuid();
         std::string emb_str = serialize_embedding(embedding);
         
-        std::string sql = "INSERT INTO faces (image_id, subject, base64_image, embedding) VALUES ('" +
+        std::string sql = "INSERT INTO " + table_name_ + " (image_id, subject, base64_image, embedding) VALUES ('" +
                           escape_string(image_id) + "', '" +
                           escape_string(name) + "', '" +
                           escape_string(base64_image) + "', '" +
@@ -206,7 +208,7 @@ public:
         
         if (!conn_) return false;
 
-        std::string sql = "DELETE FROM faces WHERE subject = '" + escape_string(name) + "'";
+        std::string sql = "DELETE FROM " + table_name_ + " WHERE subject = '" + escape_string(name) + "'";
         
         if (mysql_query(conn_, sql.c_str()) != 0) {
             std::cerr << "MySQL delete error: " << mysql_error(conn_) << std::endl;
@@ -224,7 +226,7 @@ public:
         
         if (!conn_) return false;
 
-        std::string sql = "UPDATE faces SET subject = '" + escape_string(new_name) + 
+        std::string sql = "UPDATE " + table_name_ + " SET subject = '" + escape_string(new_name) + 
                           "' WHERE subject = '" + escape_string(old_name) + "'";
         
         if (mysql_query(conn_, sql.c_str()) != 0) {
@@ -244,7 +246,7 @@ public:
         
         if (!conn_) return result;
 
-        std::string sql = "SELECT image_id, subject, base64_image, embedding FROM faces";
+        std::string sql = "SELECT image_id, subject, base64_image, embedding FROM " + table_name_;
         
         if (mysql_query(conn_, sql.c_str()) != 0) {
             return result;
@@ -339,7 +341,7 @@ public:
         
         if (!conn_) return result;
 
-        std::string sql = "SELECT subject, COUNT(*) as cnt FROM faces GROUP BY subject";
+        std::string sql = "SELECT subject, COUNT(*) as cnt FROM " + table_name_ + " GROUP BY subject";
         
         if (mysql_query(conn_, sql.c_str()) != 0) {
             return result;
@@ -369,7 +371,7 @@ public:
         std::lock_guard<std::mutex> lock(mutex_);
         if (!conn_) return 0;
 
-        std::string sql = "SELECT COUNT(*) FROM faces";
+        std::string sql = "SELECT COUNT(*) FROM " + table_name_;
         if (mysql_query(conn_, sql.c_str()) != 0) return 0;
 
         MYSQL_RES* res = mysql_store_result(conn_);

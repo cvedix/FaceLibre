@@ -1,144 +1,99 @@
-# FaceLibre - Face Recognition REST API
+# FaceLibre - High Performance Face Recognition API
 
-A high-performance REST API server for face registration and recognition, powered by **Drogon** framework, OpenCV YuNet (detection) and SFace (recognition).
+![System Architecture](data/image.png)
 
-## Features
+**FaceLibre** is an open-source, high-performance REST API for face recognition, verification, and detection. Built with **C++**, **Drogon**, and **OpenCV**, it is designed to be a drop-in high-efficiency replacement for other face recognition services (compatible with FaceLibre API standards).
 
-- 🎭 **Face Registration** with data augmentation (flip, brightness, contrast)
-- 🔍 **Face Recognition** with cosine similarity matching
-- 📊 **Face Detection** returning bounding boxes and landmarks
-- 💾 **Persistent Storage** using text-based database
-- 🚀 **High-Performance** async HTTP server with Drogon framework
-- 🌐 **REST API** with CORS support
+## 🚀 Key Features
 
-## Requirements
+*   **High Performance**: Leveraging C++ and Drogon async web framework for maximum throughput and low latency.
+*   **FaceLibre Compatibility**: Fully compatible with Exadel FaceLibre API (v1), allowing easy migration.
+*   **Multiple Backends**:
+    *   **File-based**: Simple, zero-dependency setup for small deployments.
+    *   **MySQL**: Robust storage for production environments.
+*   **State-of-the-Art Models**: Powered by OpenCV Zoo models (YuNet for detection, SFace for recognition) and expandable to InsightFace/FaceNet.
+*   **Microservices Ready**: Designed to run in Docker containers as part of a larger architecture.
 
-- CMake 3.14+
-- OpenCV 4.x with DNN module
-- C++17 compiler (GCC 8+ or Clang 7+)
+## 🛠 Technology Stack
 
-## Quick Start
+*   **Language**: C++17
+*   **Web Framework**: [Drogon](https://github.com/drogonframework/drogon)
+*   **Computer Vision**: [OpenCV](https://opencv.org/) (DNN Module)
+*   **Database**: MySQL / File System
+*   **Formats**: ONNX (Model interactions)
 
-### 1. Build
+## 📦 Installation & Build
+
+### Prerequisites
+*   Linux (Ubuntu 20.04/22.04 recommended)
+*   CMake >= 3.10
+*   G++ / Clang
+*   OpenCV >= 4.5
+*   Drogon Framework
+*   MySQL Client (optional)
+
+### Build Steps
 
 ```bash
+# Clone the repository
+git clone https://github.com/cvedix/FaceLibre.git
+cd FaceLibre
+
+# Create build directory
 mkdir build && cd build
+
+# Configure and Build
 cmake ..
 make -j$(nproc)
 ```
 
-### 2. Download Models
+## 🚦 Usage
 
-Download model files to `models/` directory:
-
-```bash
-# Face Detection (YuNet)
-wget -P models/ https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar_int8.onnx
-
-# Face Recognition (SFace)
-wget -P models/ https://github.com/opencv/opencv_zoo/raw/main/models/face_recognition_sface/face_recognition_sface_2021dec.onnx
-```
-
-### 3. Run Server
+Start the server:
 
 ```bash
-./face_api_server 8080
+./face_api_server
+# Or with specific options:
+./face_api_server --mysql --mysql-host=127.0.0.1 --mysql-pass=secret
 ```
 
-## API Endpoints
+The server listens on port `8080` by default.
 
-### Health Check
+### API Cheatsheet
 
-```bash
-curl http://localhost:8080/api/health
-```
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/api/v1/recognition/faces` | Register a new face subject |
+| `GET` | `/api/v1/recognition/faces` | List all registered faces |
+| `POST` | `/api/v1/recognition/recognize` | Recognize faces in an image |
+| `DELETE` | `/api/v1/recognition/faces` | Delete all or specific subject faces |
+| `PUT` | `/api/v1/recognition/subjects/{name}` | Rename a subject |
+| `GET` | `/api/health` | Service health status |
 
-### Register Face
+Visit `http://localhost:8080/` in your browser for the interactive documentation.
 
-```bash
-curl -X POST http://localhost:8080/api/register \
-  -F "image=@photo.jpg" \
-  -F "name=John Doe"
-```
+## 🔮 Roadmap: Enhanced AI & Generative AI
 
-### Recognize Faces
+We are actively working on the next generation of features to push the boundaries of open-source face analysis:
 
-```bash
-curl -X POST http://localhost:8080/api/recognize \
-  -F "image=@photo.jpg"
-```
+### 🧠 Enhanced AI (Analytical)
+![Image Enhanced](data/image_enhanced.png)
+- [ ] **Liveness Detection**: Anti-spoofing techniques to distinguish real faces from photos/screens.
+- [ ] **Attribute Analysis**: Integration of models for Age, Gender, Emotion, and Mask detection.
+- [ ] **Head Pose Estimation**: Accurate 3D head pose tracking (Pitch, Yaw, Roll).
+- [ ] **Advanced Models**: Support for AdaFace and MagFace for better recognition in challenging conditions.
 
-### List Persons
+### 🎨 Generative AI (Creative & Synthetic)
+![Image Generate](data/image_generate.png)
+- [ ] **Synthetic Data Generation**: Using Gan/Diffusion models to create synthetic face variations for robust training/registration.
+- [ ] **Face Anonymization**: Smart privacy filters to replace identities while preserving attributes (age, gender, expression) using generative networks.
+- [ ] **Text-to-Face Search**: Semantic search capability to find faces based on textual descriptions (e.g., "man with glasses and beard").
+- [ ] **Face Swapping**: Ethical face swapping module for privacy or entertainment use cases.
 
-```bash
-curl http://localhost:8080/api/persons
-```
+## 📄 License
 
-### Delete Person
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-```bash
-curl -X DELETE http://localhost:8080/api/persons/John%20Doe
-```
+---
 
-### Detect Faces (no recognition)
-
-```bash
-curl -X POST http://localhost:8080/api/detect \
-  -F "image=@photo.jpg"
-```
-
-## API Response Examples
-
-### Registration Response
-
-```json
-{
-  "success": true,
-  "message": "Registered John Doe with 5 augmented variants",
-  "person": {
-    "name": "John Doe",
-    "embedding_count": 5
-  }
-}
-```
-
-### Recognition Response
-
-```json
-{
-  "success": true,
-  "faces": [
-    {
-      "name": "John Doe",
-      "similarity": 0.85,
-      "confidence": 0.95,
-      "box": {"x": 100, "y": 50, "width": 120, "height": 140}
-    }
-  ],
-  "count": 1
-}
-```
-
-## Project Structure
-
-```
-FaceLibre/
-├── CMakeLists.txt
-├── README.md
-├── src/
-│   ├── main.cpp              # REST API server
-│   ├── face_database.hpp     # Face database class
-│   ├── face_database.cpp
-│   ├── face_service.hpp      # Face detection/recognition
-│   └── face_service.cpp
-├── models/                   # OpenCV DNN models
-│   ├── face_detection_yunet_2023mar_int8.onnx
-│   └── face_recognition_sface_2021dec.onnx
-├── data/
-│   └── face_database.txt     # Registered faces
-└── build/
-```
-
-## License
-
-MIT License
+**Contributions are welcome!** Please read our contribution guidelines before submitting a pull request.
