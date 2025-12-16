@@ -34,6 +34,14 @@ public:
         int embedding_count;
     };
 
+    struct LogEntry {
+        std::string request_type;
+        std::string request_body;
+        std::string response_body;
+        int response_code;
+        std::string notes;
+    };
+
 private:
     MYSQL* conn_ = nullptr;
     std::string host_;
@@ -42,6 +50,7 @@ private:
     std::string password_;
     std::string database_;
     std::string table_name_ = "faces";
+    std::string log_table_name_ = "tc_face_recognition_log";
     mutable std::mutex mutex_;
     
     // Recognition parameters
@@ -110,9 +119,10 @@ public:
     
     FaceDatabaseMySQL(const std::string& host, int port, 
                       const std::string& user, const std::string& password,
-                      const std::string& database, const std::string& table_name = "faces")
+                      const std::string& database, const std::string& table_name = "faces",
+                      const std::string& log_table_name = "tc_face_recognition_log")
         : host_(host), port_(port), user_(user), password_(password), 
-          database_(database), table_name_(table_name) {
+          database_(database), table_name_(table_name), log_table_name_(log_table_name) {
         connect();
     }
 
@@ -146,6 +156,53 @@ public:
 
         // Set UTF-8
         mysql_set_character_set(conn_, "utf8mb4");
+        
+        ensure_log_table();
+        
+        return true;
+    }
+
+    /**
+     * @brief Ensure log table exists
+     */
+    void ensure_log_table() {
+        if (!conn_) return;
+        
+        std::string sql = "CREATE TABLE IF NOT EXISTS " + log_table_name_ + " ("
+                          "id INT AUTO_INCREMENT PRIMARY KEY, "
+                          "request_type VARCHAR(50), "
+                          "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, "
+                          "request_body LONGTEXT, "
+                          "response_body LONGTEXT, "
+                          "response_code INT, "
+                          "notes TEXT"
+                          ") CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
+                          
+        if (mysql_query(conn_, sql.c_str()) != 0) {
+            std::cerr << "MySQL create log table error: " << mysql_error(conn_) << std::endl;
+        }
+    }
+
+    /**
+     * @brief Log an API request
+     */
+    bool log_request(const std::string& type, const std::string& request_body, 
+                     const std::string& response_body, int code, const std::string& notes = "") {
+        std::lock_guard<std::mutex> lock(mutex_);
+        if (!conn_) return false;
+
+        std::string sql = "INSERT INTO " + log_table_name_ + 
+                          " (request_type, request_body, response_body, response_code, notes) VALUES ('" +
+                          escape_string(type) + "', '" +
+                          escape_string(request_body) + "', '" +
+                          escape_string(response_body) + "', " +
+                          std::to_string(code) + ", '" +
+                          escape_string(notes) + "')";
+
+        if (mysql_query(conn_, sql.c_str()) != 0) {
+            std::cerr << "MySQL log error: " << mysql_error(conn_) << std::endl;
+            return false;
+        }
         return true;
     }
 

@@ -14,7 +14,8 @@
             "user": "root",
             "password": "Admin123456",
             "database": "usc",
-            "table": "tc_face_recognition"
+            "table": "tc_face_recognition",
+            "log_table": "tc_face_recognition_log"
         }
     },
     "models": {

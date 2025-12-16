@@ -137,6 +137,53 @@ inline size_t db_embedding_count() {
 }
 
 /**
+ * @brief Log request to database or file
+ */
+void log_to_db(const std::string& type, const std::string& req_body, 
+               const std::string& resp_body, int code, const std::string& notes = "") {
+    if (g_use_mysql && g_database_mysql) {
+        // Run in background thread to avoid blocking response
+        std::thread([=]() {
+            g_database_mysql->log_request(type, req_body, resp_body, code, notes);
+        }).detach();
+    } else {
+        // File-based logging when MySQL is not used
+        std::thread([=]() {
+            try {
+                // Get current timestamp
+                auto now = std::chrono::system_clock::now();
+                auto time_t_now = std::chrono::system_clock::to_time_t(now);
+                std::tm tm_now{};
+                localtime_r(&time_t_now, &tm_now);
+                
+                char timestamp[64];
+                std::strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", &tm_now);
+                
+                // Create log entry as JSON
+                json log_entry = {
+                    {"timestamp", timestamp},
+                    {"request_type", type},
+                    {"response_code", code},
+                    {"notes", notes},
+                    {"request_body", req_body},
+                    {"response_body", resp_body}
+                };
+                
+                // Write to file
+                std::string log_path = "./data/api_log.txt";
+                std::ofstream log_file(log_path, std::ios::app);
+                if (log_file.is_open()) {
+                    log_file << log_entry.dump() << "\n";
+                    log_file.close();
+                }
+            } catch (const std::exception& e) {
+                std::cerr << "File logging error: " << e.what() << std::endl;
+            }
+        }).detach();
+    }
+}
+
+/**
  * @brief JSON error response helper
  */
 Json::Value error_json(const std::string& message) {
@@ -157,6 +204,16 @@ Json::Value to_jsoncpp(const json& j) {
     Json::parseFromStream(builder, ss, &result, &errors);
     return result;
 }
+
+/**
+ * @brief Convert Json::Value (jsoncpp) to string
+ */
+std::string jsoncpp_to_string(const Json::Value& json) {
+    Json::StreamWriterBuilder builder;
+    builder["indentation"] = ""; // Compact JSON
+    return Json::writeString(builder, json);
+}
+
 
 /**
  * @brief Decode base64 string to bytes
@@ -230,11 +287,11 @@ public:
 class FaceController : public HttpController<FaceController> {
 public:
     METHOD_LIST_BEGIN
-    ADD_METHOD_TO(FaceController::registerFaceCompreFace, "/api/v1/recognition/faces", Post);
+    ADD_METHOD_TO(FaceController::registerFaceFaceLibre, "/api/v1/recognition/faces", Post);
     ADD_METHOD_TO(FaceController::listFaces, "/api/v1/recognition/faces", Get);
-    ADD_METHOD_TO(FaceController::recognizeCompreFace, "/api/v1/recognition/recognize", Post);
-    ADD_METHOD_TO(FaceController::deleteFacesCompreFace, "/api/v1/recognition/faces", Delete);
-    ADD_METHOD_TO(FaceController::renameSubjectCompreFace, "/api/v1/recognition/subjects/{subject_name}", Put);
+    ADD_METHOD_TO(FaceController::recognizeFaceLibre, "/api/v1/recognition/recognize", Post);
+    ADD_METHOD_TO(FaceController::deleteFacesFaceLibre, "/api/v1/recognition/faces", Delete);
+    ADD_METHOD_TO(FaceController::renameSubjectFaceLibre, "/api/v1/recognition/subjects/{subject_name}", Put);
     METHOD_LIST_END
 
     /**
@@ -258,7 +315,7 @@ public:
     }
 
     /**
-     * @brief List all registered faces (CompreFace-compatible)
+     * @brief List all registered faces (FaceLibre-compatible)
      * 
      * GET /api/v1/recognition/faces
      */
@@ -291,18 +348,18 @@ public:
     }
 
     /**
-     * @brief CompreFace-compatible face deletion
+     * @brief FaceLibre-compatible face deletion
      * 
      * DELETE /api/v1/recognition/faces?subject=<name>
      * If subject is provided, delete that subject only
      * If subject is empty, delete ALL faces
      */
-    void deleteFacesCompreFace(const HttpRequestPtr& req,
+    void deleteFacesFaceLibre(const HttpRequestPtr& req,
                                 std::function<void(const HttpResponsePtr&)>&& callback) {
         // Log API key if present (optional)
         std::string apiKey = req->getHeader("x-api-key");
         if (!apiKey.empty()) {
-            LOG_DEBUG << "[CompreFace] API key provided for delete: " << apiKey.substr(0, 8) << "...";
+            LOG_DEBUG << "[FaceLibre] API key provided for delete: " << apiKey.substr(0, 8) << "...";
         }
 
         // Get subject from query parameter
@@ -334,7 +391,7 @@ public:
 
             auto resp = HttpResponse::newHttpJsonResponse(to_jsoncpp(response));
             callback(resp);
-            LOG_INFO << "[CompreFace] Deleted all faces (" << deleted_subjects.size() << " subjects)";
+            LOG_INFO << "[FaceLibre] Deleted all faces (" << deleted_subjects.size() << " subjects)";
         } else {
             // Delete specific subject
             if (db_delete_person(subject)) {
@@ -347,30 +404,30 @@ public:
 
                 auto resp = HttpResponse::newHttpJsonResponse(to_jsoncpp(response));
                 callback(resp);
-                LOG_INFO << "[CompreFace] Deleted subject: " << subject;
+                LOG_INFO << "[FaceLibre] Deleted subject: " << subject;
             } else {
                 auto resp = HttpResponse::newHttpJsonResponse(
                     error_json("Subject not found: " + subject));
                 resp->setStatusCode(k404NotFound);
                 callback(resp);
-                LOG_WARN << "[CompreFace] Subject not found for deletion: " << subject;
+                LOG_WARN << "[FaceLibre] Subject not found for deletion: " << subject;
             }
         }
     }
 
     /**
-     * @brief CompreFace-compatible subject rename
+     * @brief FaceLibre-compatible subject rename
      * 
      * PUT /api/v1/recognition/subjects/{subject_name}
      * Body: {"subject": "<new_name>"}
      */
-    void renameSubjectCompreFace(const HttpRequestPtr& req,
+    void renameSubjectFaceLibre(const HttpRequestPtr& req,
                                   std::function<void(const HttpResponsePtr&)>&& callback,
                                   const std::string& subject_name) {
         // Log API key if present (optional)
         std::string apiKey = req->getHeader("x-api-key");
         if (!apiKey.empty()) {
-            LOG_DEBUG << "[CompreFace] API key provided for rename: " << apiKey.substr(0, 8) << "...";
+            LOG_DEBUG << "[FaceLibre] API key provided for rename: " << apiKey.substr(0, 8) << "...";
         }
 
         // URL decode the old name
@@ -436,24 +493,24 @@ public:
 
             auto resp = HttpResponse::newHttpJsonResponse(to_jsoncpp(response));
             callback(resp);
-            LOG_INFO << "[CompreFace] Renamed subject: " << old_name << " -> " << new_name;
+            LOG_INFO << "[FaceLibre] Renamed subject: " << old_name << " -> " << new_name;
         } else {
             auto resp = HttpResponse::newHttpJsonResponse(
                 error_json("Subject not found: " + old_name));
             resp->setStatusCode(k404NotFound);
             callback(resp);
-            LOG_WARN << "[CompreFace] Subject not found for rename: " << old_name;
+            LOG_WARN << "[FaceLibre] Subject not found for rename: " << old_name;
         }
     }
 
     /**
-     * @brief CompreFace-compatible face registration
+     * @brief FaceLibre-compatible face registration
      * 
      * Endpoint: POST /api/v1/recognition/faces?subject=<name>
      * Headers: x-api-key (optional)
      * Body: {"file": "<base64_image>"}
      */
-    void registerFaceCompreFace(const HttpRequestPtr& req,
+    void registerFaceFaceLibre(const HttpRequestPtr& req,
                                 std::function<void(const HttpResponsePtr&)>&& callback) {
         // Get subject from query parameter
         std::string subject = req->getParameter("subject");
@@ -524,7 +581,7 @@ public:
             return;
         }
 
-        LOG_INFO << "[CompreFace] Registering subject: " << subject 
+        LOG_INFO << "[FaceLibre] Registering subject: " << subject 
                  << " (image: " << image.cols << "x" << image.rows << ")";
 
         // Extract face embedding directly
@@ -535,7 +592,11 @@ public:
                 error_json("No face detected or failed to extract embedding"));
             resp->setStatusCode(k400BadRequest);
             callback(resp);
-            LOG_WARN << "[CompreFace] Registration failed: no face detected";
+            LOG_WARN << "[FaceLibre] Registration failed: no face detected";
+            
+            // Log failure
+            log_to_db("register", jsonPtr ? jsoncpp_to_string(*jsonPtr) : "", 
+                      "{\"error\": \"No face detected\"}", 400, subject);
             return;
         }
 
@@ -543,14 +604,17 @@ public:
         std::string image_id = db_add_face(subject, embedding, base64_image);
         db_save();
 
-        // CompreFace-style response
+        // FaceLibre-style response
         json response = {
             {"image_id", image_id},
             {"subject", subject}
         };
         auto resp = HttpResponse::newHttpJsonResponse(to_jsoncpp(response));
         callback(resp);
-        LOG_INFO << "[CompreFace] Registered: " << subject << " with image_id=" << image_id;
+        LOG_INFO << "[FaceLibre] Registered: " << subject << " with image_id=" << image_id;
+
+        // Log success
+        log_to_db("register", jsonPtr ? jsoncpp_to_string(*jsonPtr) : "", response.dump(), 200, subject);
     }
 
     void registerFace(const HttpRequestPtr& req,
@@ -570,19 +634,19 @@ public:
     }
 
     /**
-     * @brief CompreFace-compatible face recognition
+     * @brief FaceLibre-compatible face recognition
      * 
      * Endpoint: POST /api/v1/recognition/recognize
      * Query params: limit, det_prob_threshold, prediction_count, face_plugins, status
      * Headers: x-api-key (optional)
      * Body: {"file": "<base64_image>"}
      */
-    void recognizeCompreFace(const HttpRequestPtr& req,
+    void recognizeFaceLibre(const HttpRequestPtr& req,
                               std::function<void(const HttpResponsePtr&)>&& callback) {
         // Log API key if present (optional)
         std::string apiKey = req->getHeader("x-api-key");
         if (!apiKey.empty()) {
-            LOG_DEBUG << "[CompreFace] API key provided: " << apiKey.substr(0, 8) << "...";
+            LOG_DEBUG << "[FaceLibre] API key provided: " << apiKey.substr(0, 8) << "...";
         }
 
         // Parse query parameters
@@ -654,7 +718,7 @@ public:
             return;
         }
 
-        LOG_INFO << "[CompreFace] Recognizing faces in image: " 
+        LOG_INFO << "[FaceLibre] Recognizing faces in image: " 
                  << image.cols << "x" << image.rows 
                  << " (det_prob_threshold=" << det_prob_threshold 
                  << ", prediction_count=" << prediction_count << ")";
@@ -662,7 +726,7 @@ public:
         // Recognize faces
         auto faces = g_face_service->recognize_faces(image);
 
-        // Build CompreFace-style response
+        // Build FaceLibre-style response
         json result_array = json::array();
         
         for (const auto& face : faces) {
@@ -671,7 +735,7 @@ public:
                 continue;
             }
 
-            // Build box object (CompreFace format: x_min, y_min, x_max, y_max)
+            // Build box object (FaceLibre format: x_min, y_min, x_max, y_max)
             json box = {
                 {"probability", face.confidence},
                 {"x_min", face.box.x},
@@ -780,7 +844,11 @@ public:
         auto resp = HttpResponse::newHttpJsonResponse(to_jsoncpp(response));
         callback(resp);
         
-        LOG_INFO << "[CompreFace] Recognized " << result_array.size() << " faces";
+        LOG_INFO << "[FaceLibre] Recognized " << result_array.size() << " faces";
+
+        // Log result
+        log_to_db("recognize", jsonPtr ? jsoncpp_to_string(*jsonPtr) : "", response.dump(), 200, 
+                  "Found " + std::to_string(result_array.size()) + " faces");
     }
 
 
@@ -830,7 +898,7 @@ public:
         <p>Health check and service status</p>
     </div>
     
-    <h2>CompreFace Compatible API</h2>
+    <h2>FaceLibre Compatible API</h2>
 
     <div class="endpoint">
         <span class="method get">GET</span>
@@ -891,6 +959,7 @@ int main(int argc, char* argv[]) {
     std::string mysql_pass = "Admin123456";
     std::string mysql_db = "facelibre";
     std::string mysql_table = "faces";
+    std::string mysql_log_table = "tc_face_recognition_log";
     
     std::string models_dir = "./models";
     std::string data_dir = "./data";
@@ -924,6 +993,7 @@ int main(int argc, char* argv[]) {
                         if (mysql.contains("password")) mysql_pass = mysql["password"];
                         if (mysql.contains("database")) mysql_db = mysql["database"];
                         if (mysql.contains("table")) mysql_table = mysql["table"];
+                        if (mysql.contains("log_table")) mysql_log_table = mysql["log_table"];
                     }
                 }
             }
@@ -991,7 +1061,8 @@ int main(int argc, char* argv[]) {
     // Initialize database based on mode
     if (use_mysql) {
         std::cout << "📦 Using MySQL database: " << mysql_user << "@" << mysql_host << ":" << mysql_port << "/" << mysql_db << " [" << mysql_table << "]\n";
-        g_database_mysql = std::make_shared<FaceDatabaseMySQL>(mysql_host, mysql_port, mysql_user, mysql_pass, mysql_db, mysql_table);
+        std::cout << "📝 Log table: " << mysql_log_table << "\n";
+        g_database_mysql = std::make_shared<FaceDatabaseMySQL>(mysql_host, mysql_port, mysql_user, mysql_pass, mysql_db, mysql_table, mysql_log_table);
         if (!g_database_mysql->is_connected()) {
             std::cerr << "❌ Failed to connect to MySQL database\n";
             return 1;

@@ -1,0 +1,303 @@
+openapi: 3.0.0
+info:
+  title: FaceLibre API
+  description: Face Recognition REST API compatible with FaceLibre.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local server
+paths:
+  /api/health:
+    get:
+      summary: Health check
+      description: Returns the health status of the API server.
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status:
+                    type: string
+                  service:
+                    type: string
+                  version:
+                    type: string
+                  framework:
+                    type: string
+                  database:
+                    type: object
+                    properties:
+                      persons:
+                        type: integer
+                      embeddings:
+                        type: integer
+
+  /api/v1/recognition/faces:
+    get:
+      summary: List all registered faces
+      tags:
+        - Face Management
+      parameters:
+        - in: header
+          name: x-api-key
+          schema:
+            type: string
+          required: false
+          description: API Key
+      responses:
+        '200':
+          description: List of faces
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  faces:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        image_id:
+                          type: string
+                        subject:
+                          type: string
+                        base64:
+                          type: string
+                  total_elements:
+                    type: integer
+
+    post:
+      summary: Register a new face
+      tags:
+        - Face Management
+      parameters:
+        - in: query
+          name: subject
+          schema:
+            type: string
+          required: true
+          description: Name of the subject to register
+        - in: header
+          name: x-api-key
+          schema:
+            type: string
+          required: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  description: Base64 encoded image string
+      responses:
+        '200':
+          description: Face registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  image_id:
+                    type: string
+                  subject:
+                    type: string
+        '400':
+          description: Bad request (missing parameters or invalid image)
+
+    delete:
+      summary: Delete faces
+      tags:
+        - Face Management
+      description: Delete a specific subject or all faces if no subject is provided.
+      parameters:
+        - in: query
+          name: subject
+          schema:
+            type: string
+          required: false
+          description: Subject to delete. If empty, deletes ALL faces.
+        - in: header
+          name: x-api-key
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Deletion successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: integer
+                    description: Number of subjects deleted or integer/boolean depending on context
+                  message:
+                    type: string
+                  subject:
+                    type: string
+        '404':
+          description: Subject not found
+
+  /api/v1/recognition/recognize:
+    post:
+      summary: Recognize faces in an image
+      tags:
+        - Recognition
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 0
+          description: Maximum number of faces to return (0 for no limit)
+        - in: query
+          name: det_prob_threshold
+          schema:
+            type: number
+            format: float
+            default: 0.8
+          description: Detection probability threshold
+        - in: query
+          name: prediction_count
+          schema:
+            type: integer
+            default: 1
+          description: Number of similar faces to return
+        - in: query
+          name: face_plugins
+          schema:
+            type: string
+          description: Comma-separated list of plugins (landmarks, age, gender, mask, pose, calculator)
+        - in: query
+          name: status
+          schema:
+            type: boolean
+            default: false
+          description: If true, returns plugin versions
+        - in: header
+          name: x-api-key
+          schema:
+            type: string
+          required: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  description: Base64 encoded image string
+      responses:
+        '200':
+          description: Recognition results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        box:
+                          type: object
+                          properties:
+                            probability:
+                              type: number
+                            x_min:
+                              type: integer
+                            y_min:
+                              type: integer
+                            x_max:
+                              type: integer
+                            y_max:
+                              type: integer
+                        subjects:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              subject:
+                                type: string
+                              similarity:
+                                type: number
+                        landmarks:
+                          type: array
+                          items:
+                            type: array
+                            items:
+                              type: integer
+                        age:
+                          type: object
+                        gender:
+                          type: object
+                        mask:
+                          type: object
+                        pose:
+                          type: object
+                  plugins_versions:
+                    type: object
+        '400':
+          description: Bad request
+
+  /api/v1/recognition/subjects/{subject_name}:
+    put:
+      summary: Rename a subject
+      tags:
+        - Face Management
+      parameters:
+        - in: path
+          name: subject_name
+          schema:
+            type: string
+          required: true
+          description: Current name of the subject
+        - in: header
+          name: x-api-key
+          schema:
+            type: string
+          required: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - subject
+              properties:
+                subject:
+                  type: string
+                  description: New name for the subject
+      responses:
+        '200':
+          description: Subject renamed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated:
+                    type: boolean
+                  subject:
+                    type: string
+        '404':
+          description: Subject not found
+        '400':
+          description: Bad request
