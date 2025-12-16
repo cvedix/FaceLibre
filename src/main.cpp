@@ -39,12 +39,14 @@ bool g_use_mysql = false;
 // ========================================
 
 /**
- * @brief Add face to database (file or MySQL)
+ * @brief Add face to database (file or MySQL) with device info
  */
 inline std::string db_add_face(const std::string& name, const std::vector<float>& embedding, 
-                               const std::string& base64 = "") {
+                               const std::string& base64 = "",
+                               const std::string& mac_address = "",
+                               const std::string& machine_id = "") {
     if (g_use_mysql && g_database_mysql) {
-        return g_database_mysql->add_face(name, embedding, base64);
+        return g_database_mysql->add_face(name, embedding, base64, mac_address, machine_id);
     }
     return g_database->add_face(name, embedding, base64);
 }
@@ -136,50 +138,101 @@ inline size_t db_embedding_count() {
     return g_database->embedding_count();
 }
 
+// ========================================
+// DEVICE INFO HELPERS
+// ========================================
+
 /**
- * @brief Log request to database or file
+ * @brief Execute shell command and return output
  */
-void log_to_db(const std::string& type, const std::string& req_body, 
-               const std::string& resp_body, int code, const std::string& notes = "") {
-    if (g_use_mysql && g_database_mysql) {
-        // Run in background thread to avoid blocking response
-        std::thread([=]() {
-            g_database_mysql->log_request(type, req_body, resp_body, code, notes);
-        }).detach();
-    } else {
-        // File-based logging when MySQL is not used
-        std::thread([=]() {
-            try {
-                // Get current timestamp
-                auto now = std::chrono::system_clock::now();
-                auto time_t_now = std::chrono::system_clock::to_time_t(now);
-                std::tm tm_now{};
-                localtime_r(&time_t_now, &tm_now);
-                
-                char timestamp[64];
-                std::strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", &tm_now);
-                
-                // Create log entry as JSON
-                json log_entry = {
-                    {"timestamp", timestamp},
-                    {"request_type", type},
-                    {"response_code", code},
-                    {"notes", notes},
-                    {"request_body", req_body},
-                    {"response_body", resp_body}
-                };
-                
-                // Write to file
-                std::string log_path = "./data/api_log.txt";
-                std::ofstream log_file(log_path, std::ios::app);
-                if (log_file.is_open()) {
-                    log_file << log_entry.dump() << "\n";
-                    log_file.close();
-                }
-            } catch (const std::exception& e) {
-                std::cerr << "File logging error: " << e.what() << std::endl;
+std::string get_command_output(const char* cmd) {
+    std::array<char, 256> buffer;
+    std::string result;
+    FILE* pipe = popen(cmd, "r");
+    if (!pipe) return "";
+    while (fgets(buffer.data(), buffer.size(), pipe) != nullptr) {
+        result += buffer.data();
+    }
+    pclose(pipe);
+    while (!result.empty() && (result.back() == '\n' || result.back() == '\r')) {
+        result.pop_back();
+    }
+    return result;
+}
+
+/**
+ * @brief Get MAC address (cached)
+ */
+std::string get_mac_address() {
+    static std::string cached_mac;
+    if (cached_mac.empty()) {
+        cached_mac = get_command_output("cat /sys/class/net/$(ip route show default | awk '/default/ {print $5}' | head -1)/address 2>/dev/null || echo 'unknown'");
+    }
+    return cached_mac;
+}
+
+/**
+ * @brief Get machine ID (cached)
+ */
+std::string get_machine_id() {
+    static std::string cached_id;
+    if (cached_id.empty()) {
+        std::ifstream mid_file("/etc/machine-id");
+        if (mid_file.is_open()) {
+            std::getline(mid_file, cached_id);
+            mid_file.close();
+        }
+    }
+    return cached_id;
+}
+
+/**
+ * @brief Log request to database (synchronous to avoid memory issues)
+ */
+void log_to_db(const std::string& type, const std::string& client_ip,
+               const std::string& req_body, const std::string& resp_body, 
+               int code, const std::string& notes = "") {
+    try {
+        std::string mac_addr = get_mac_address();
+        std::string machine_id = get_machine_id();
+        
+        if (g_use_mysql && g_database_mysql) {
+            g_database_mysql->log_request(type, client_ip, mac_addr, machine_id, 
+                                          req_body, resp_body, code, notes);
+        } else {
+            // File-based logging
+            auto now = std::chrono::system_clock::now();
+            auto time_t_now = std::chrono::system_clock::to_time_t(now);
+            std::tm tm_now{};
+            localtime_r(&time_t_now, &tm_now);
+            
+            char timestamp[64];
+            std::strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", &tm_now);
+            
+            Json::Value log_entry;
+            log_entry["timestamp"] = timestamp;
+            log_entry["request_type"] = type;
+            log_entry["client_ip"] = client_ip;
+            log_entry["mac_address"] = mac_addr;
+            log_entry["machine_id"] = machine_id;
+            log_entry["response_code"] = code;
+            log_entry["notes"] = notes;
+            log_entry["request_body"] = req_body;
+            log_entry["response_body"] = resp_body;
+            
+            std::string log_path = "./data/api_log.txt";
+            std::ofstream log_file(log_path, std::ios::app);
+            if (log_file.is_open()) {
+                Json::StreamWriterBuilder builder;
+                builder["indentation"] = "";
+                log_file << Json::writeString(builder, log_entry) << "\n";
+                log_file.close();
             }
-        }).detach();
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "Logging error: " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "Unknown logging error" << std::endl;
     }
 }
 
@@ -287,12 +340,220 @@ public:
 class FaceController : public HttpController<FaceController> {
 public:
     METHOD_LIST_BEGIN
+    ADD_METHOD_TO(FaceController::getSystemInfo, "/api/v1/recognition/info", Get);
+    ADD_METHOD_TO(FaceController::searchFaces, "/api/v1/recognition/search", Post);
     ADD_METHOD_TO(FaceController::registerFaceFaceLibre, "/api/v1/recognition/faces", Post);
     ADD_METHOD_TO(FaceController::listFaces, "/api/v1/recognition/faces", Get);
     ADD_METHOD_TO(FaceController::recognizeFaceLibre, "/api/v1/recognition/recognize", Post);
     ADD_METHOD_TO(FaceController::deleteFacesFaceLibre, "/api/v1/recognition/faces", Delete);
     ADD_METHOD_TO(FaceController::renameSubjectFaceLibre, "/api/v1/recognition/subjects/{subject_name}", Put);
     METHOD_LIST_END
+
+    /**
+     * @brief Helper to execute command and get output
+     */
+    static std::string exec_command(const char* cmd) {
+        std::array<char, 256> buffer;
+        std::string result;
+        FILE* pipe = popen(cmd, "r");
+        if (!pipe) return "";
+        while (fgets(buffer.data(), buffer.size(), pipe) != nullptr) {
+            result += buffer.data();
+        }
+        pclose(pipe);
+        // Trim trailing newline
+        while (!result.empty() && (result.back() == '\n' || result.back() == '\r')) {
+            result.pop_back();
+        }
+        return result;
+    }
+
+    /**
+     * @brief Get system information
+     * 
+     * GET /api/v1/recognition/info
+     */
+    void getSystemInfo(const HttpRequestPtr& req,
+                       std::function<void(const HttpResponsePtr&)>&& callback) {
+        Json::Value response;
+        response["success"] = true;
+        
+        // Get hostname
+        response["hostname"] = exec_command("hostname");
+        
+        // Get machine ID (unique per installation)
+        std::string machine_id;
+        std::ifstream mid_file("/etc/machine-id");
+        if (mid_file.is_open()) {
+            std::getline(mid_file, machine_id);
+            mid_file.close();
+        }
+        response["machine_id"] = machine_id;
+        
+        // Get MAC address of first network interface
+        std::string mac_address = exec_command("cat /sys/class/net/$(ip route show default | awk '/default/ {print $5}' | head -1)/address 2>/dev/null || echo 'unknown'");
+        response["mac_address"] = mac_address;
+        
+        // Get IP addresses
+        std::string ip_addresses = exec_command("hostname -I 2>/dev/null | tr ' ' ','");
+        if (!ip_addresses.empty() && ip_addresses.back() == ',') {
+            ip_addresses.pop_back();
+        }
+        response["ip_addresses"] = ip_addresses;
+        
+        // Get CPU serial (if available)
+        std::string cpu_serial = exec_command("cat /proc/cpuinfo | grep Serial | awk '{print $3}' 2>/dev/null");
+        if (!cpu_serial.empty()) {
+            response["cpu_serial"] = cpu_serial;
+        }
+        
+        // Get OS info
+        response["os"] = exec_command("uname -s");
+        response["os_version"] = exec_command("uname -r");
+        response["architecture"] = exec_command("uname -m");
+        
+        // Service info
+        response["service"] = "FaceLibre API";
+        response["version"] = "1.0.0";
+        
+        // Database info
+        Json::Value db_info;
+        db_info["type"] = g_use_mysql ? "mysql" : "file";
+        db_info["persons"] = static_cast<Json::UInt64>(db_person_count());
+        db_info["embeddings"] = static_cast<Json::UInt64>(db_embedding_count());
+        response["database"] = db_info;
+        
+        auto resp = HttpResponse::newHttpJsonResponse(response);
+        callback(resp);
+    }
+
+    /**
+     * @brief Search for similar faces in the database
+     * 
+     * POST /api/v1/recognition/search
+     * Query params: limit (default 10), threshold (default 0.3)
+     * Body: {"file": "<base64_image>"}
+     */
+    void searchFaces(const HttpRequestPtr& req,
+                     std::function<void(const HttpResponsePtr&)>&& callback) {
+        // Parse query parameters
+        int limit = 10;
+        float threshold = 0.3f;
+        
+        std::string limit_str = req->getParameter("limit");
+        if (!limit_str.empty()) {
+            try { limit = std::stoi(limit_str); } catch (...) {}
+        }
+        std::string threshold_str = req->getParameter("threshold");
+        if (!threshold_str.empty()) {
+            try { threshold = std::stof(threshold_str); } catch (...) {}
+        }
+
+        // Parse JSON body
+        auto jsonPtr = req->getJsonObject();
+        if (!jsonPtr || !jsonPtr->isMember("file")) {
+            auto resp = HttpResponse::newHttpJsonResponse(error_json("Missing 'file' field"));
+            resp->setStatusCode(k400BadRequest);
+            callback(resp);
+            return;
+        }
+
+        std::string base64_image = (*jsonPtr)["file"].asString();
+        if (base64_image.empty()) {
+            auto resp = HttpResponse::newHttpJsonResponse(error_json("Empty 'file' field"));
+            resp->setStatusCode(k400BadRequest);
+            callback(resp);
+            return;
+        }
+
+        // Decode base64
+        std::vector<unsigned char> imageData = decode_base64(base64_image);
+        if (imageData.empty()) {
+            auto resp = HttpResponse::newHttpJsonResponse(error_json("Failed to decode base64 image"));
+            resp->setStatusCode(k400BadRequest);
+            callback(resp);
+            return;
+        }
+
+        // Decode image
+        cv::Mat image = cv::imdecode(imageData, cv::IMREAD_COLOR);
+        if (image.empty()) {
+            auto resp = HttpResponse::newHttpJsonResponse(error_json("Failed to decode image"));
+            resp->setStatusCode(k400BadRequest);
+            callback(resp);
+            return;
+        }
+
+        LOG_INFO << "[FaceLibre] Searching similar faces in image: " 
+                 << image.cols << "x" << image.rows 
+                 << " (limit=" << limit << ", threshold=" << threshold << ")";
+
+        // Extract face embedding
+        std::vector<float> query_embedding = g_face_service->extract_face_embedding(image);
+        if (query_embedding.empty()) {
+            auto resp = HttpResponse::newHttpJsonResponse(error_json("No face detected in image"));
+            resp->setStatusCode(k400BadRequest);
+            callback(resp);
+            return;
+        }
+
+        // Get all faces and calculate similarity
+        auto all_faces = db_get_all_faces();
+        
+        // Store results: similarity, index
+        std::vector<std::pair<float, size_t>> scores;
+        scores.reserve(all_faces.size());
+        
+        for (size_t idx = 0; idx < all_faces.size(); idx++) {
+            if (query_embedding.size() != all_faces[idx].embedding.size()) continue;
+            
+            // Calculate cosine similarity
+            float dot = 0.0f, norm_a = 0.0f, norm_b = 0.0f;
+            for (size_t i = 0; i < query_embedding.size(); i++) {
+                dot += query_embedding[i] * all_faces[idx].embedding[i];
+                norm_a += query_embedding[i] * query_embedding[i];
+                norm_b += all_faces[idx].embedding[i] * all_faces[idx].embedding[i];
+            }
+            float similarity = dot / (std::sqrt(norm_a) * std::sqrt(norm_b) + 1e-6f);
+            
+            if (similarity >= threshold) {
+                scores.push_back({similarity, idx});
+            }
+        }
+
+        // Sort by similarity descending
+        std::sort(scores.begin(), scores.end(), 
+            [](const std::pair<float, size_t>& a, const std::pair<float, size_t>& b) { 
+                return a.first > b.first; 
+            });
+
+        // Limit results
+        if (limit > 0 && static_cast<int>(scores.size()) > limit) {
+            scores.resize(limit);
+        }
+
+        LOG_INFO << "[FaceLibre] Search found " << scores.size() << " similar faces";
+
+        // Build response
+        Json::Value response;
+        response["success"] = true;
+        response["total_found"] = static_cast<Json::UInt64>(scores.size());
+        
+        Json::Value matches(Json::arrayValue);
+        for (size_t i = 0; i < scores.size(); i++) {
+            size_t idx = scores[i].second;
+            Json::Value match;
+            match["image_id"] = all_faces[idx].image_id;
+            match["subject"] = all_faces[idx].name;
+            match["similarity"] = scores[i].first;
+            match["base64"] = all_faces[idx].base64_image;
+            matches.append(match);
+        }
+        response["matches"] = matches;
+
+        auto resp = HttpResponse::newHttpJsonResponse(response);
+        callback(resp);
+    }
 
     /**
      * @brief Generate simple UUID-like string
@@ -595,13 +856,16 @@ public:
             LOG_WARN << "[FaceLibre] Registration failed: no face detected";
             
             // Log failure
-            log_to_db("register", jsonPtr ? jsoncpp_to_string(*jsonPtr) : "", 
+            std::string client_ip = req->peerAddr().toIp();
+            log_to_db("register", client_ip, jsonPtr ? jsoncpp_to_string(*jsonPtr) : "", 
                       "{\"error\": \"No face detected\"}", 400, subject);
             return;
         }
 
-        // Save to database with base64 image
-        std::string image_id = db_add_face(subject, embedding, base64_image);
+        // Save to database with base64 image and device info
+        std::string mac_addr = get_mac_address();
+        std::string machine_id = get_machine_id();
+        std::string image_id = db_add_face(subject, embedding, base64_image, mac_addr, machine_id);
         db_save();
 
         // FaceLibre-style response
@@ -614,7 +878,8 @@ public:
         LOG_INFO << "[FaceLibre] Registered: " << subject << " with image_id=" << image_id;
 
         // Log success
-        log_to_db("register", jsonPtr ? jsoncpp_to_string(*jsonPtr) : "", response.dump(), 200, subject);
+        std::string client_ip = req->peerAddr().toIp();
+        log_to_db("register", client_ip, jsonPtr ? jsoncpp_to_string(*jsonPtr) : "", response.dump(), 200, subject);
     }
 
     void registerFace(const HttpRequestPtr& req,
@@ -723,16 +988,23 @@ public:
                  << " (det_prob_threshold=" << det_prob_threshold 
                  << ", prediction_count=" << prediction_count << ")";
 
-        // Recognize faces
+        // Detect faces and extract embeddings
         auto faces = g_face_service->recognize_faces(image);
 
         // Build FaceLibre-style response
         json result_array = json::array();
         
-        for (const auto& face : faces) {
+        for (auto& face : faces) {
             // Skip faces below detection threshold
             if (face.confidence < det_prob_threshold) {
                 continue;
+            }
+
+            // Re-identify using the correct database when MySQL is configured
+            if (g_use_mysql && g_database_mysql && !face.embedding.empty()) {
+                auto match = g_database_mysql->identify(face.embedding);
+                face.name = match.name;
+                face.similarity = match.similarity;
             }
 
             // Build box object (FaceLibre format: x_min, y_min, x_max, y_max)
@@ -846,8 +1118,9 @@ public:
         
         LOG_INFO << "[FaceLibre] Recognized " << result_array.size() << " faces";
 
-        // Log result
-        log_to_db("recognize", jsonPtr ? jsoncpp_to_string(*jsonPtr) : "", response.dump(), 200, 
+        // Log result with client IP
+        std::string client_ip = req->peerAddr().toIp();
+        log_to_db("recognize", client_ip, jsonPtr ? jsoncpp_to_string(*jsonPtr) : "", response.dump(), 200, 
                   "Found " + std::to_string(result_array.size()) + " faces");
     }
 
@@ -1108,6 +1381,8 @@ int main(int argc, char* argv[]) {
         .setLogLevel(trantor::Logger::kInfo)
         .addListener("0.0.0.0", port)
         .setThreadNum(4)
+        .setClientMaxBodySize(50 * 1024 * 1024)  // 50MB max body size for large images
+        .setClientMaxMemoryBodySize(50 * 1024 * 1024)  // 50MB in-memory
         .run();
 
     std::cout << "Server stopped.\n";

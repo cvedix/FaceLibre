@@ -37,6 +37,126 @@ paths:
                       embeddings:
                         type: integer
 
+  /api/v1/recognition/info:
+    get:
+      summary: Get system information
+      tags:
+        - System
+      description: Returns device identification info including MAC address, machine ID, hostname, and other system details.
+      responses:
+        '200':
+          description: System information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  hostname:
+                    type: string
+                    description: Device hostname
+                  machine_id:
+                    type: string
+                    description: Unique machine identifier from /etc/machine-id
+                  mac_address:
+                    type: string
+                    description: MAC address of primary network interface
+                  ip_addresses:
+                    type: string
+                    description: Comma-separated list of IP addresses
+                  cpu_serial:
+                    type: string
+                    description: CPU serial number (if available, e.g., on Raspberry Pi)
+                  os:
+                    type: string
+                    description: Operating system name
+                  os_version:
+                    type: string
+                    description: Kernel version
+                  architecture:
+                    type: string
+                    description: CPU architecture (x86_64, aarch64, etc.)
+                  service:
+                    type: string
+                  version:
+                    type: string
+                  database:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      persons:
+                        type: integer
+                      embeddings:
+                        type: integer
+
+  /api/v1/recognition/search:
+    post:
+      summary: Search for similar faces
+      tags:
+        - Search
+      description: Find faces in the database that are similar to the provided image.
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: Maximum number of results to return
+        - in: query
+          name: threshold
+          schema:
+            type: number
+            format: float
+            default: 0.3
+          description: Minimum similarity threshold (0-1)
+        - in: header
+          name: x-api-key
+          schema:
+            type: string
+          required: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  description: Base64 encoded image containing a face
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  total_found:
+                    type: integer
+                  matches:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        image_id:
+                          type: string
+                        subject:
+                          type: string
+                        similarity:
+                          type: number
+                        base64:
+                          type: string
+                          description: Base64 image of the matched face
+        '400':
+          description: Bad request (no face detected, invalid image, etc.)
+
   /api/v1/recognition/faces:
     get:
       summary: List all registered faces

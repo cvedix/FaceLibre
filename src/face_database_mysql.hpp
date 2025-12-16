@@ -172,6 +172,9 @@ public:
                           "id INT AUTO_INCREMENT PRIMARY KEY, "
                           "request_type VARCHAR(50), "
                           "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, "
+                          "client_ip VARCHAR(45), "
+                          "mac_address VARCHAR(20), "
+                          "machine_id VARCHAR(64), "
                           "request_body LONGTEXT, "
                           "response_body LONGTEXT, "
                           "response_code INT, "
@@ -181,19 +184,40 @@ public:
         if (mysql_query(conn_, sql.c_str()) != 0) {
             std::cerr << "MySQL create log table error: " << mysql_error(conn_) << std::endl;
         }
+
+        // Add columns if they don't exist (for existing tables)
+        const char* alter_queries[] = {
+            "ALTER TABLE %s ADD COLUMN IF NOT EXISTS client_ip VARCHAR(45)",
+            "ALTER TABLE %s ADD COLUMN IF NOT EXISTS mac_address VARCHAR(20)",
+            "ALTER TABLE %s ADD COLUMN IF NOT EXISTS machine_id VARCHAR(64)"
+        };
+        for (const char* query_template : alter_queries) {
+            char query[512];
+            snprintf(query, sizeof(query), query_template, log_table_name_.c_str());
+            mysql_query(conn_, query); // Ignore errors (column may already exist)
+        }
     }
 
     /**
-     * @brief Log an API request
+     * @brief Log an API request with device info
      */
-    bool log_request(const std::string& type, const std::string& request_body, 
-                     const std::string& response_body, int code, const std::string& notes = "") {
+    bool log_request(const std::string& type, 
+                     const std::string& client_ip,
+                     const std::string& mac_address,
+                     const std::string& machine_id,
+                     const std::string& request_body, 
+                     const std::string& response_body, 
+                     int code, 
+                     const std::string& notes = "") {
         std::lock_guard<std::mutex> lock(mutex_);
         if (!conn_) return false;
 
         std::string sql = "INSERT INTO " + log_table_name_ + 
-                          " (request_type, request_body, response_body, response_code, notes) VALUES ('" +
+                          " (request_type, client_ip, mac_address, machine_id, request_body, response_body, response_code, notes) VALUES ('" +
                           escape_string(type) + "', '" +
+                          escape_string(client_ip) + "', '" +
+                          escape_string(mac_address) + "', '" +
+                          escape_string(machine_id) + "', '" +
                           escape_string(request_body) + "', '" +
                           escape_string(response_body) + "', " +
                           std::to_string(code) + ", '" +
@@ -225,22 +249,51 @@ public:
     }
 
     /**
-     * @brief Add a new face entry
+     * @brief Ensure faces table has mac_address and machine_id columns
+     */
+    void ensure_face_table_columns() {
+        if (!conn_) return;
+        
+        const char* alter_queries[] = {
+            "ALTER TABLE %s ADD COLUMN IF NOT EXISTS mac_address VARCHAR(20)",
+            "ALTER TABLE %s ADD COLUMN IF NOT EXISTS machine_id VARCHAR(64)"
+        };
+        for (const char* query_template : alter_queries) {
+            char query[512];
+            snprintf(query, sizeof(query), query_template, table_name_.c_str());
+            mysql_query(conn_, query); // Ignore errors (column may already exist)
+        }
+    }
+
+    /**
+     * @brief Add a new face entry with device info
      */
     std::string add_face(const std::string& name, const std::vector<float>& embedding,
-                         const std::string& base64_image = "") {
+                         const std::string& base64_image = "",
+                         const std::string& mac_address = "",
+                         const std::string& machine_id = "") {
         std::lock_guard<std::mutex> lock(mutex_);
         
         if (!conn_) return "";
 
+        // Ensure columns exist (only first time)
+        static bool columns_checked = false;
+        if (!columns_checked) {
+            ensure_face_table_columns();
+            columns_checked = true;
+        }
+
         std::string image_id = generate_uuid();
         std::string emb_str = serialize_embedding(embedding);
         
-        std::string sql = "INSERT INTO " + table_name_ + " (image_id, subject, base64_image, embedding) VALUES ('" +
+        std::string sql = "INSERT INTO " + table_name_ + 
+                          " (image_id, subject, base64_image, embedding, mac_address, machine_id) VALUES ('" +
                           escape_string(image_id) + "', '" +
                           escape_string(name) + "', '" +
                           escape_string(base64_image) + "', '" +
-                          escape_string(emb_str) + "')";
+                          escape_string(emb_str) + "', '" +
+                          escape_string(mac_address) + "', '" +
+                          escape_string(machine_id) + "')";
 
         if (mysql_query(conn_, sql.c_str()) != 0) {
             std::cerr << "MySQL insert error: " << mysql_error(conn_) << std::endl;
@@ -254,7 +307,7 @@ public:
      * @brief Add a new embedding for a person (legacy API)
      */
     void add_embedding(const std::string& name, const std::vector<float>& embedding) {
-        add_face(name, embedding, "");
+        add_face(name, embedding, "", "", "");
     }
 
     /**
