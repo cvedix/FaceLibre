@@ -427,7 +427,14 @@ public:
         std::string best_match = similarities[0].first;
         float best_sim = similarities[0].second;
 
+        // Debug logging
+        std::cerr << "[identify] Best: " << best_match << " (" << best_sim << "), threshold=" << threshold_ << std::endl;
+        if (similarities.size() >= 2) {
+            std::cerr << "[identify] Second: " << similarities[1].first << " (" << similarities[1].second << "), min_gap=" << min_gap_ << std::endl;
+        }
+
         if (best_sim < threshold_) {
+            std::cerr << "[identify] REJECTED: best_sim < threshold" << std::endl;
             return {"Unknown", best_sim, false};
         }
 
@@ -435,6 +442,7 @@ public:
             float second_sim = similarities[1].second;
             float gap = best_sim - second_sim;
             if (gap < min_gap_ && second_sim > threshold_) {
+                std::cerr << "[identify] REJECTED: gap=" << gap << " < min_gap AND second > threshold" << std::endl;
                 return {"Unknown", best_sim, false};
             }
         }

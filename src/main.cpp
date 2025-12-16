@@ -916,7 +916,7 @@ public:
 
         // Parse query parameters
         int limit = 0;
-        double det_prob_threshold = 0.8;
+        double det_prob_threshold = 0.5;  // Lowered to detect faces with sunglasses/masks
         int prediction_count = 1;
         std::string face_plugins = req->getParameter("face_plugins");
         bool return_status = (req->getParameter("status") == "true");
@@ -990,21 +990,31 @@ public:
 
         // Detect faces and extract embeddings
         auto faces = g_face_service->recognize_faces(image);
+        
+        LOG_INFO << "[FaceLibre] Detected " << faces.size() << " faces";
 
         // Build FaceLibre-style response
         json result_array = json::array();
         
         for (auto& face : faces) {
+            LOG_INFO << "[FaceLibre] Face: confidence=" << face.confidence 
+                     << ", embedding_size=" << face.embedding.size()
+                     << ", name=" << face.name 
+                     << ", similarity=" << face.similarity;
+            
             // Skip faces below detection threshold
             if (face.confidence < det_prob_threshold) {
+                LOG_INFO << "[FaceLibre] Skipped: confidence < det_prob_threshold";
                 continue;
             }
 
             // Re-identify using the correct database when MySQL is configured
             if (g_use_mysql && g_database_mysql && !face.embedding.empty()) {
+                LOG_INFO << "[FaceLibre] Re-identifying with MySQL database...";
                 auto match = g_database_mysql->identify(face.embedding);
                 face.name = match.name;
                 face.similarity = match.similarity;
+                LOG_INFO << "[FaceLibre] MySQL identify result: " << face.name << " (" << face.similarity << ")";
             }
 
             // Build box object (FaceLibre format: x_min, y_min, x_max, y_max)
