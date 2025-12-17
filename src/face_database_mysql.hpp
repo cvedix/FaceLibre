@@ -9,6 +9,8 @@
 #include <cmath>
 #include <mutex>
 #include <random>
+#include <chrono>
+#include <iomanip>
 #include <mysql/mysql.h>
 
 /**
@@ -42,6 +44,19 @@ public:
         std::string notes;
     };
 
+    struct ConfidenceGapInfo {
+        std::string timestamp;
+        std::string top1_name;
+        float top1_similarity;
+        std::string top2_name;
+        float top2_similarity;
+        float gap;
+        float min_gap_threshold;
+        float similarity_threshold;
+        bool rejected;
+        std::string rejection_reason;
+    };
+
 private:
     MYSQL* conn_ = nullptr;
     std::string host_;
@@ -56,6 +71,8 @@ private:
     // Recognition parameters
     float threshold_ = 0.4f;
     float min_gap_ = 0.08f;
+    bool enable_gap_logging_ = true;
+    std::vector<ConfidenceGapInfo> gap_log_;
 
     /**
      * @brief Generate UUID-like string
@@ -435,16 +452,30 @@ public:
 
         if (best_sim < threshold_) {
             std::cerr << "[identify] REJECTED: best_sim < threshold" << std::endl;
+            log_confidence_gap(best_match, best_sim,
+                similarities.size() >= 2 ? similarities[1].first : "",
+                similarities.size() >= 2 ? similarities[1].second : 0.0f,
+                true, "below_threshold");
             return {"Unknown", best_sim, false};
         }
 
         if (similarities.size() >= 2) {
             float second_sim = similarities[1].second;
             float gap = best_sim - second_sim;
-            if (gap < min_gap_ && second_sim > threshold_) {
-                std::cerr << "[identify] REJECTED: gap=" << gap << " < min_gap AND second > threshold" << std::endl;
+            
+            // Log confidence gap info - reject if gap is below min_gap
+            bool rejected = (gap < min_gap_);
+            log_confidence_gap(best_match, best_sim,
+                similarities[1].first, second_sim,
+                rejected, rejected ? "insufficient_gap" : "passed");
+            
+            if (rejected) {
+                std::cerr << "[identify] REJECTED: gap=" << gap << " < min_gap (" << min_gap_ << ")" << std::endl;
                 return {"Unknown", best_sim, false};
             }
+        } else {
+            // Only one person in database, log it
+            log_confidence_gap(best_match, best_sim, "", 0.0f, false, "single_person");
         }
 
         return {best_match, best_sim, true};
@@ -507,4 +538,108 @@ public:
 
     void set_threshold(float threshold) { threshold_ = threshold; }
     void set_min_gap(float min_gap) { min_gap_ = min_gap; }
+    void set_gap_logging(bool enable) { enable_gap_logging_ = enable; }
+
+    /**
+     * @brief Get current timestamp as string
+     */
+    static std::string get_timestamp() {
+        auto now = std::chrono::system_clock::now();
+        auto time_t_now = std::chrono::system_clock::to_time_t(now);
+        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+            now.time_since_epoch()) % 1000;
+        
+        std::stringstream ss;
+        ss << std::put_time(std::localtime(&time_t_now), "%Y-%m-%d %H:%M:%S");
+        ss << "." << std::setfill('0') << std::setw(3) << ms.count();
+        return ss.str();
+    }
+
+    /**
+     * @brief Log confidence gap information
+     */
+    void log_confidence_gap(const std::string& top1_name, float top1_sim,
+                           const std::string& top2_name, float top2_sim,
+                           bool rejected, const std::string& reason) {
+        if (!enable_gap_logging_) return;
+        
+        float gap = top1_sim - top2_sim;
+        
+        ConfidenceGapInfo info;
+        info.timestamp = get_timestamp();
+        info.top1_name = top1_name;
+        info.top1_similarity = top1_sim;
+        info.top2_name = top2_name;
+        info.top2_similarity = top2_sim;
+        info.gap = gap;
+        info.min_gap_threshold = min_gap_;
+        info.similarity_threshold = threshold_;
+        info.rejected = rejected;
+        info.rejection_reason = reason;
+        
+        gap_log_.push_back(info);
+        
+        // Print detailed log
+        std::cerr << "[CONFIDENCE_GAP] " << info.timestamp << " | "
+                  << "Top1: " << top1_name << " (" << std::fixed << std::setprecision(4) << top1_sim << ") | "
+                  << "Top2: " << top2_name << " (" << std::fixed << std::setprecision(4) << top2_sim << ") | "
+                  << "Gap: " << std::fixed << std::setprecision(4) << gap << " (min: " << min_gap_ << ") | "
+                  << "Result: " << (rejected ? "REJECTED" : "ACCEPTED") << " (" << reason << ")"
+                  << std::endl;
+    }
+
+    /**
+     * @brief Get all confidence gap logs
+     */
+    std::vector<ConfidenceGapInfo> get_gap_logs() const {
+        return gap_log_;
+    }
+
+    /**
+     * @brief Get only rejected confidence gap logs
+     */
+    std::vector<ConfidenceGapInfo> get_rejected_gap_logs() const {
+        std::vector<ConfidenceGapInfo> result;
+        for (const auto& info : gap_log_) {
+            if (info.rejected) {
+                result.push_back(info);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * @brief Clear confidence gap logs
+     */
+    void clear_gap_logs() {
+        gap_log_.clear();
+    }
+
+    /**
+     * @brief Print confidence gap summary to stderr
+     */
+    void print_gap_summary() const {
+        int total = gap_log_.size();
+        int rejected = 0;
+        int below_threshold = 0;
+        int insufficient_gap = 0;
+        
+        for (const auto& info : gap_log_) {
+            if (info.rejected) {
+                rejected++;
+                if (info.rejection_reason == "below_threshold") below_threshold++;
+                if (info.rejection_reason == "insufficient_gap") insufficient_gap++;
+            }
+        }
+        
+        std::cerr << "\n====== CONFIDENCE GAP SUMMARY ======" << std::endl;
+        std::cerr << "Total recognitions:      " << total << std::endl;
+        std::cerr << "Accepted:                " << (total - rejected) << std::endl;
+        std::cerr << "Rejected:                " << rejected << std::endl;
+        std::cerr << "  - Below threshold:     " << below_threshold << std::endl;
+        std::cerr << "  - Insufficient gap:    " << insufficient_gap << std::endl;
+        std::cerr << "Current threshold:       " << threshold_ << std::endl;
+        std::cerr << "Current min_gap:         " << min_gap_ << std::endl;
+        std::cerr << "====================================\n" << std::endl;
+    }
 };
