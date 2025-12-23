@@ -1,7 +1,7 @@
 {
     "server": {
         "port": 8080,
-        "threads": 4
+        "threads": 32
     },
     "database": {
         "type": "mysql",
@@ -14,8 +14,9 @@
             "user": "root",
             "password": "Admin123456",
             "database": "usc",
-            "table": "tc_face_recognition",
-            "log_table": "tc_face_recognition_log"
+            "table": "tc_face_library",
+            "log_table": "tc_face_library_log",
+            "similarity_table": "tc_face_similarity"
         }
     },
     "models": {
@@ -23,7 +24,7 @@
         "recognizer": "./models/face_recognition_sface_2021dec.onnx"
     },
     "recognition": {
-        "threshold": 0.4,
-        "min_gap": 0.2
+        "threshold": 0.3,
+        "min_gap": 0.15
     }
 }

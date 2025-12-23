@@ -345,6 +345,9 @@ public:
     ADD_METHOD_TO(FaceController::registerFaceFaceLibre, "/api/v1/recognition/faces", Post);
     ADD_METHOD_TO(FaceController::listFaces, "/api/v1/recognition/faces", Get);
     ADD_METHOD_TO(FaceController::recognizeFaceLibre, "/api/v1/recognition/recognize", Post);
+    ADD_METHOD_TO(FaceController::extractFeatures, "/api/v1/detection/extract", Post);
+    ADD_METHOD_TO(FaceController::searchDetection, "/api/v1/detection/search", Post);
+    ADD_METHOD_TO(FaceController::searchDetection, "/face/detection/search", Post);
     ADD_METHOD_TO(FaceController::deleteFacesFaceLibre, "/api/v1/recognition/faces", Delete);
     ADD_METHOD_TO(FaceController::renameSubjectFaceLibre, "/api/v1/recognition/subjects/{subject_name}", Put);
     METHOD_LIST_END
@@ -552,6 +555,207 @@ public:
         response["matches"] = matches;
 
         auto resp = HttpResponse::newHttpJsonResponse(response);
+        callback(resp);
+    }
+
+    /**
+     * @brief Extract features (embedding) from faces in image
+     * 
+     * POST /api/v1/detection/extract
+     * Body: {"file": "<base64_image>"}
+     */
+    void extractFeatures(const HttpRequestPtr& req,
+                         std::function<void(const HttpResponsePtr&)>&& callback) {
+        // Parse JSON body
+        auto jsonPtr = req->getJsonObject();
+        if (!jsonPtr || !jsonPtr->isMember("file")) {
+            auto resp = HttpResponse::newHttpJsonResponse(error_json("Missing 'file' field"));
+            resp->setStatusCode(k400BadRequest);
+            callback(resp);
+            return;
+        }
+
+        std::string base64_image = (*jsonPtr)["file"].asString();
+        if (base64_image.empty()) {
+            auto resp = HttpResponse::newHttpJsonResponse(error_json("Empty 'file' field"));
+            resp->setStatusCode(k400BadRequest);
+            callback(resp);
+            return;
+        }
+
+        // Decode base64
+        std::vector<unsigned char> imageData = decode_base64(base64_image);
+        if (imageData.empty()) {
+            auto resp = HttpResponse::newHttpJsonResponse(error_json("Failed to decode base64 image"));
+            resp->setStatusCode(k400BadRequest);
+            callback(resp);
+            return;
+        }
+
+        // Decode image
+        cv::Mat image = cv::imdecode(imageData, cv::IMREAD_COLOR);
+        if (image.empty()) {
+            auto resp = HttpResponse::newHttpJsonResponse(error_json("Failed to decode image"));
+            resp->setStatusCode(k400BadRequest);
+            callback(resp);
+            return;
+        }
+
+        LOG_INFO << "[FaceLibre] Extracting features from image: " 
+                 << image.cols << "x" << image.rows;
+
+        // Extract features
+        auto faces = g_face_service->extract_features(image);
+        
+        // Build response
+        Json::Value response;
+        response["success"] = true;
+        response["count"] = static_cast<Json::UInt64>(faces.size());
+        
+        Json::Value faces_json(Json::arrayValue);
+        for (const auto& face : faces) {
+            Json::Value f;
+            
+            // Bounding box
+            Json::Value box;
+            box["x"] = face.box.x;
+            box["y"] = face.box.y;
+            box["width"] = face.box.width;
+            box["height"] = face.box.height;
+            f["box"] = box;
+            
+            f["confidence"] = face.confidence;
+            
+            // Embedding
+            Json::Value embedding(Json::arrayValue);
+            for (float v : face.embedding) {
+                embedding.append(v);
+            }
+            f["embedding"] = embedding;
+            
+            // Landmarks (optional)
+            if (!face.landmarks.empty()) {
+                Json::Value landmarks(Json::arrayValue);
+                for (float v : face.landmarks) {
+                    landmarks.append(v);
+                }
+                f["landmarks"] = landmarks;
+            }
+            
+            faces_json.append(f);
+        }
+        response["faces"] = faces_json;
+
+        auto resp = HttpResponse::newHttpJsonResponse(response);
+        callback(resp);
+    }
+
+    /**
+     * @brief Search for faces in detection history
+     * 
+     * POST /api/v1/detection/search
+     */
+    void searchDetection(const HttpRequestPtr& req,
+                         std::function<void(const HttpResponsePtr&)>&& callback) {
+        auto jsonPtr = req->getJsonObject();
+        if (!jsonPtr) {
+            auto resp = HttpResponse::newHttpResponse();
+            resp->setStatusCode(k400BadRequest);
+            resp->setBody("Invalid JSON");
+            callback(resp);
+            return;
+        }
+
+        std::string base64_image;
+        if (jsonPtr->isMember("file")) {
+            base64_image = (*jsonPtr)["file"].asString();
+        } else {
+            auto resp = HttpResponse::newHttpResponse();
+            resp->setStatusCode(k400BadRequest);
+            resp->setBody("Missing 'file' field");
+            callback(resp);
+            return;
+        }
+
+        // Optional parameters
+        int limit = 10;
+        float threshold = 0.6f;
+        if (jsonPtr->isMember("limit")) limit = (*jsonPtr)["limit"].asInt();
+        if (jsonPtr->isMember("threshold")) threshold = (*jsonPtr)["threshold"].asFloat();
+
+        std::vector<unsigned char> imageData = decode_base64(base64_image);
+        if (imageData.empty()) {
+            auto resp = HttpResponse::newHttpResponse();
+            resp->setStatusCode(k400BadRequest);
+            resp->setBody("Invalid base64 image");
+            callback(resp);
+            return;
+        }
+
+        cv::Mat image = cv::imdecode(imageData, cv::IMREAD_COLOR);
+        if (image.empty()) {
+            auto resp = HttpResponse::newHttpResponse();
+            resp->setStatusCode(k400BadRequest);
+            resp->setBody("Failed to decode image");
+            callback(resp);
+            return;
+        }
+
+        // 1. Detect faces and extract embeddings
+        auto faces = g_face_service->extract_features(image);
+        
+        json results_json = json::array();
+
+        if (g_use_mysql && g_database_mysql) {
+            // 2. Search for each face in history
+            for (const auto& face : faces) {
+                auto matches = g_database_mysql->search_similarity_table(face.embedding, limit, threshold);
+                
+                json face_result;
+                face_result["box"] = {
+                    {"x", face.box.x},
+                    {"y", face.box.y},
+                    {"width", face.box.width},
+                    {"height", face.box.height}
+                };
+                face_result["confidence"] = face.confidence;
+                
+                json matches_json = json::array();
+                for (const auto& match : matches) {
+                    matches_json.push_back({
+                        {"id", match.id},
+                        {"camera_id", match.camera_id},
+                        {"timestamp", match.timestamp},
+                        {"similarity", match.similarity},
+                        {"attributes", match.attributes},
+                        {"face_image", match.face_image}
+                    });
+                }
+                face_result["matches"] = matches_json;
+                
+                results_json.push_back(face_result);
+            }
+        } else {
+             // Fallback if not using MySQL
+             for (const auto& face : faces) {
+                json face_result;
+                face_result["box"] = {
+                    {"x", face.box.x},
+                    {"y", face.box.y},
+                    {"width", face.box.width},
+                    {"height", face.box.height}
+                };
+                face_result["confidence"] = face.confidence;
+                face_result["matches"] = json::array();
+                results_json.push_back(face_result);
+             }
+        }
+
+        json response;
+        response["success"] = true;
+        response["results"] = results_json;
+
+        auto resp = HttpResponse::newHttpJsonResponse(to_jsoncpp(response));
         callback(resp);
     }
 
@@ -1243,6 +1447,7 @@ int main(int argc, char* argv[]) {
     std::string mysql_db = "facelibre";
     std::string mysql_table = "faces";
     std::string mysql_log_table = "tc_face_recognition_log";
+    std::string mysql_similarity_table = "tc_face_similarity";
     
     std::string models_dir = "./models";
     std::string data_dir = "./data";
@@ -1277,6 +1482,7 @@ int main(int argc, char* argv[]) {
                         if (mysql.contains("database")) mysql_db = mysql["database"];
                         if (mysql.contains("table")) mysql_table = mysql["table"];
                         if (mysql.contains("log_table")) mysql_log_table = mysql["log_table"];
+                        if (mysql.contains("similarity_table")) mysql_similarity_table = mysql["similarity_table"];
                     }
                 }
             }
@@ -1345,7 +1551,7 @@ int main(int argc, char* argv[]) {
     if (use_mysql) {
         std::cout << "📦 Using MySQL database: " << mysql_user << "@" << mysql_host << ":" << mysql_port << "/" << mysql_db << " [" << mysql_table << "]\n";
         std::cout << "📝 Log table: " << mysql_log_table << "\n";
-        g_database_mysql = std::make_shared<FaceDatabaseMySQL>(mysql_host, mysql_port, mysql_user, mysql_pass, mysql_db, mysql_table, mysql_log_table);
+        g_database_mysql = std::make_shared<FaceDatabaseMySQL>(mysql_host, mysql_port, mysql_user, mysql_pass, mysql_db, mysql_table, mysql_log_table, mysql_similarity_table);
         if (!g_database_mysql->is_connected()) {
             std::cerr << "❌ Failed to connect to MySQL database\n";
             return 1;

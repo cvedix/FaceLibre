@@ -1,0 +1,134 @@
+[
+    {
+        "uuid": "fake-cam-001",
+        "file": "Pexels-Videos-1677252.mp4"
+    },
+    {
+        "uuid": "fake-cam-002",
+        "file": "Thermal_scene.mp4"
+    },
+    {
+        "uuid": "fake-cam-003",
+        "file": "enet_seg.mp4"
+    },
+    {
+        "uuid": "fake-cam-004",
+        "file": "face.mp4"
+    },
+    {
+        "uuid": "fake-cam-005",
+        "file": "face2.mp4"
+    },
+    {
+        "uuid": "fake-cam-006",
+        "file": "jam.mp4"
+    },
+    {
+        "uuid": "fake-cam-007",
+        "file": "jam2.mp4"
+    },
+    {
+        "uuid": "fake-cam-008",
+        "file": "mask_rcnn.mp4"
+    },
+    {
+        "uuid": "fake-cam-009",
+        "file": "ocr.mp4"
+    },
+    {
+        "uuid": "fake-cam-010",
+        "file": "people_walking_indoor.mp4"
+    },
+    {
+        "uuid": "fake-cam-011",
+        "file": "pexels-braeson-holland-5497969.mp4"
+    },
+    {
+        "uuid": "fake-cam-012",
+        "file": "pexels-drone-000.mp4"
+    },
+    {
+        "uuid": "fake-cam-013",
+        "file": "pexels-drone-001.mp4"
+    },
+    {
+        "uuid": "fake-cam-014",
+        "file": "pexels-drone-002-staticcam.mp4"
+    },
+    {
+        "uuid": "fake-cam-015",
+        "file": "pexels-drone-003-staticcam.mp4"
+    },
+    {
+        "uuid": "fake-cam-016",
+        "file": "pexels-drone-004-closeup.mp4"
+    },
+    {
+        "uuid": "fake-cam-017",
+        "file": "pexels-drone-005-closeup.mp4"
+    },
+    {
+        "uuid": "fake-cam-018",
+        "file": "pexels-green-nature-9175956.mp4"
+    },
+    {
+        "uuid": "fake-cam-019",
+        "file": "pexels-hamzah-tariq-8863794.mp4"
+    },
+    {
+        "uuid": "fake-cam-020",
+        "file": "pexels-timo-volz-5544073.mp4"
+    },
+    {
+        "uuid": "fake-cam-021",
+        "file": "pexels-valiantsin-konan-7949276.mp4"
+    },
+    {
+        "uuid": "fake-cam-022",
+        "file": "pexels-valiantsin-konan-7949301.mp4"
+    },
+    {
+        "uuid": "fake-cam-023",
+        "file": "pexels-valiantsin-konan-7949463.mp4"
+    },
+    {
+        "uuid": "fake-cam-024",
+        "file": "pexels-valiantsin-konan-7949470.mp4"
+    },
+    {
+        "uuid": "fake-cam-025",
+        "file": "plate.mp4"
+    },
+    {
+        "uuid": "fake-cam-026",
+        "file": "pose.mp4"
+    },
+    {
+        "uuid": "fake-cam-027",
+        "file": "vehicle_area_intrusion_rain.mp4"
+    },
+    {
+        "uuid": "fake-cam-028",
+        "file": "vehicle_count.mp4"
+    },
+    {
+        "uuid": "fake-cam-029",
+        "file": "vehicle_stop.mp4"
+    },
+    {
+        "uuid": "fake-cam-030",
+        "file": "vid-1.mp4"
+    },
+    {
+        "uuid": "fake-cam-031",
+        "file": "vid-2.mp4"
+    },
+    {
+        "uuid": "fake-cam-032",
+        "file": "vid-4.mp4"
+    },
+    {
+        "uuid": "fake-cam-033",
+        "file": "vid-6.mp4"
+    }
+]

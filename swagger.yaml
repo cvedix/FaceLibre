@@ -269,6 +269,71 @@ paths:
         '404':
           description: Subject not found
 
+  /api/v1/detection/extract:
+    post:
+      summary: Extract facial features
+      tags:
+        - Detection
+      description: Detect faces in an image and return their bounding boxes, landmarks, and feature embeddings.
+      parameters:
+        - in: header
+          name: x-api-key
+          schema:
+            type: string
+          required: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  description: Base64 encoded image string
+      responses:
+        '200':
+          description: Feature extraction results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  count:
+                    type: integer
+                  faces:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        box:
+                          type: object
+                          properties:
+                            x:
+                              type: integer
+                            y:
+                              type: integer
+                            width:
+                              type: integer
+                            height:
+                              type: integer
+                        confidence:
+                          type: number
+                        embedding:
+                          type: array
+                          items:
+                            type: number
+                        landmarks:
+                          type: array
+                          items:
+                            type: number
+        '400':
+          description: Bad request (invalid image or missing fields)
+
   /api/v1/recognition/recognize:
     post:
       summary: Recognize faces in an image

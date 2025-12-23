@@ -66,10 +66,12 @@ private:
     std::string database_;
     std::string table_name_ = "faces";
     std::string log_table_name_ = "tc_face_recognition_log";
+    std::string similarity_table_name_ = "tc_face_similarity";
     mutable std::mutex mutex_;
     
     // Recognition parameters
     float threshold_ = 0.4f;
+
     float min_gap_ = 0.08f;
     bool enable_gap_logging_ = true;
     std::vector<ConfidenceGapInfo> gap_log_;
@@ -137,9 +139,11 @@ public:
     FaceDatabaseMySQL(const std::string& host, int port, 
                       const std::string& user, const std::string& password,
                       const std::string& database, const std::string& table_name = "faces",
-                      const std::string& log_table_name = "tc_face_recognition_log")
+                      const std::string& log_table_name = "tc_face_recognition_log",
+                      const std::string& similarity_table_name = "tc_face_similarity")
         : host_(host), port_(port), user_(user), password_(password), 
-          database_(database), table_name_(table_name), log_table_name_(log_table_name) {
+          database_(database), table_name_(table_name), log_table_name_(log_table_name),
+          similarity_table_name_(similarity_table_name) {
         connect();
     }
 
@@ -647,5 +651,81 @@ public:
         std::cerr << "Current threshold:       " << threshold_ << std::endl;
         std::cerr << "Current min_gap:         " << min_gap_ << std::endl;
         std::cerr << "====================================\n" << std::endl;
+    }
+    struct SimilarityResult {
+        std::string id;
+        std::string camera_id;
+        std::string timestamp;
+        std::string attributes;
+        std::string face_image;
+        float similarity;
+        std::vector<float> embedding;
+    };
+
+    /**
+     * @brief Search for similar faces in tc_face_similarity table
+     */
+    std::vector<SimilarityResult> search_similarity_table(const std::vector<float>& query_embedding, 
+                                                         int limit = 10, 
+                                                         float threshold = 0.6f) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        std::vector<SimilarityResult> results;
+        
+        if (!conn_ || query_embedding.empty()) return results;
+
+        std::string sql = "SELECT id, face_embedding, camera_id, timestamp, attributes, base64_image FROM " + similarity_table_name_ + " ORDER BY timestamp DESC LIMIT 1000"; 
+        // Note: Fetching recent 1000 for performance, ideally better indexing/search needed for large DBs
+        
+        if (mysql_query(conn_, sql.c_str()) != 0) {
+            std::cerr << "MySQL search error: " << mysql_error(conn_) << std::endl;
+            return results;
+        }
+
+        MYSQL_RES* res = mysql_store_result(conn_);
+        if (!res) return results;
+
+        MYSQL_ROW row;
+        while ((row = mysql_fetch_row(res))) {
+            std::string emb_str = row[1] ? row[1] : "";
+            if (emb_str.empty()) continue;
+
+            std::vector<float> db_embedding = parse_embedding(emb_str);
+            if (db_embedding.size() != query_embedding.size()) continue;
+
+            // Cosine similarity
+            float dot = 0.0f, norm_a = 0.0f, norm_b = 0.0f;
+            for (size_t i = 0; i < query_embedding.size(); i++) {
+                dot += query_embedding[i] * db_embedding[i];
+                norm_a += query_embedding[i] * query_embedding[i];
+                norm_b += db_embedding[i] * db_embedding[i];
+            }
+            float sim = dot / (std::sqrt(norm_a) * std::sqrt(norm_b) + 1e-6f);
+
+            if (sim >= threshold) {
+                SimilarityResult result;
+                result.id = row[0] ? row[0] : "";
+                result.camera_id = row[2] ? row[2] : "";
+                result.timestamp = row[3] ? row[3] : "";
+                result.attributes = row[4] ? row[4] : "";
+                result.face_image = row[5] ? row[5] : "";
+                result.similarity = sim;
+                result.embedding = db_embedding;
+                results.push_back(result);
+            }
+        }
+        mysql_free_result(res);
+        
+        // std::cout << "DEBUG: Search finished. Found " << results.size() << " matches above threshold " << threshold << " from recent records.\n";
+
+        // Sort by similarity descending
+        std::sort(results.begin(), results.end(), [](const SimilarityResult& a, const SimilarityResult& b) {
+            return a.similarity > b.similarity;
+        });
+
+        if (limit > 0 && results.size() > static_cast<size_t>(limit)) {
+            results.resize(limit);
+        }
+
+        return results;
     }
 };

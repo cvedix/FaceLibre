@@ -427,6 +427,58 @@ public:
         return results;
     }
 
+    /**
+     * @brief Detect faces and extract features without identification
+     * 
+     * Returns faces with embeddings but no name/similarity info from database.
+     */
+    std::vector<FaceInfo> extract_features(const cv::Mat& image) {
+        std::vector<FaceInfo> results;
+        
+        if (image.empty() || !detector_ || !recognizer_) {
+            return results;
+        }
+
+        try {
+            detector_->setInputSize(image.size());
+            
+            cv::Mat detections;
+            detector_->detect(image, detections);
+
+            for (int i = 0; i < detections.rows; i++) {
+                FaceInfo face;
+                face.box.x = static_cast<int>(detections.at<float>(i, 0));
+                face.box.y = static_cast<int>(detections.at<float>(i, 1));
+                face.box.width = static_cast<int>(detections.at<float>(i, 2));
+                face.box.height = static_cast<int>(detections.at<float>(i, 3));
+                face.confidence = detections.at<float>(i, 14);
+
+                // Extract 5 landmarks (10 values: x1,y1,x2,y2,...)
+                for (int j = 4; j < 14; j++) {
+                    face.landmarks.push_back(detections.at<float>(i, j));
+                }
+
+                // Extract embedding
+                cv::Mat face_det = detections.row(i);
+                cv::Mat aligned_face;
+                recognizer_->alignCrop(image, face_det, aligned_face);
+
+                cv::Mat feature;
+                recognizer_->feature(aligned_face, feature);
+
+                if (!feature.empty()) {
+                    face.embedding.assign(feature.begin<float>(), feature.end<float>());
+                }
+
+                results.push_back(face);
+            }
+        } catch (const cv::Exception& e) {
+            std::cerr << "Feature extraction error: " << e.what() << std::endl;
+        }
+
+        return results;
+    }
+
     bool is_initialized() const {
         return detector_ && recognizer_ && database_;
     }
