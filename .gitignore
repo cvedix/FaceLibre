@@ -8,3 +8,5 @@ build/
 *.dll
 .DS_Store
 data/face_database.txt
+*.zip*
+data/vggface2_112x112
