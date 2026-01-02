@@ -667,14 +667,17 @@ public:
      */
     std::vector<SimilarityResult> search_similarity_table(const std::vector<float>& query_embedding, 
                                                          int limit = 10, 
-                                                         float threshold = 0.6f) {
+                                                         float threshold = 0.3f) {
         std::lock_guard<std::mutex> lock(mutex_);
         std::vector<SimilarityResult> results;
         
         if (!conn_ || query_embedding.empty()) return results;
 
-        std::string sql = "SELECT id, face_embedding, camera_id, timestamp, attributes, base64_image FROM " + similarity_table_name_ + " ORDER BY timestamp DESC LIMIT 1000"; 
-        // Note: Fetching recent 1000 for performance, ideally better indexing/search needed for large DBs
+        std::string sql = "SELECT id, face_embedding, camera_id, timestamp, attributes, base64_image FROM " + similarity_table_name_ + " ORDER BY timestamp DESC"; 
+        // Note: No limit - scan all records in database
+        
+        std::cerr << "[search_similarity_table] Query embedding dimension: " << query_embedding.size() 
+                  << ", threshold: " << threshold << std::endl;
         
         if (mysql_query(conn_, sql.c_str()) != 0) {
             std::cerr << "MySQL search error: " << mysql_error(conn_) << std::endl;
@@ -715,11 +718,15 @@ public:
         }
         mysql_free_result(res);
         
-        // std::cout << "DEBUG: Search finished. Found " << results.size() << " matches above threshold " << threshold << " from recent records.\n";
+        std::cerr << "[search_similarity_table] Scanned records, found " << results.size() 
+                  << " matches above threshold " << threshold << std::endl;
 
-        // Sort by similarity descending
+        // Sort by similarity descending first, then by timestamp descending for ties
         std::sort(results.begin(), results.end(), [](const SimilarityResult& a, const SimilarityResult& b) {
-            return a.similarity > b.similarity;
+            if (a.similarity != b.similarity) {
+                return a.similarity > b.similarity;  // Higher similarity first
+            }
+            return a.timestamp > b.timestamp;  // Same similarity: most recent first
         });
 
         if (limit > 0 && results.size() > static_cast<size_t>(limit)) {

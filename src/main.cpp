@@ -678,8 +678,8 @@ public:
         }
 
         // Optional parameters
-        int limit = 10;
-        float threshold = 0.6f;
+        int limit = 50;  // Return top 50 most recent matches
+        float threshold = 0.3f;  // Minimum similarity threshold
         if (jsonPtr->isMember("limit")) limit = (*jsonPtr)["limit"].asInt();
         if (jsonPtr->isMember("threshold")) threshold = (*jsonPtr)["threshold"].asFloat();
 

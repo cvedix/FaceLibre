@@ -10,3 +10,4 @@ build/
 data/face_database.txt
 *.zip*
 data/vggface2_112x112
+usc.sql
