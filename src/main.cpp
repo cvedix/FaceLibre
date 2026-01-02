@@ -680,8 +680,13 @@ public:
         // Optional parameters
         int limit = 50;  // Return top 50 most recent matches
         float threshold = 0.3f;  // Minimum similarity threshold
+        std::string from_date = "";  // Start date filter (YYYY-MM-DD or YYYY-MM-DD HH:MM:SS)
+        std::string to_date = "";    // End date filter (YYYY-MM-DD or YYYY-MM-DD HH:MM:SS)
+        
         if (jsonPtr->isMember("limit")) limit = (*jsonPtr)["limit"].asInt();
         if (jsonPtr->isMember("threshold")) threshold = (*jsonPtr)["threshold"].asFloat();
+        if (jsonPtr->isMember("from_date")) from_date = (*jsonPtr)["from_date"].asString();
+        if (jsonPtr->isMember("to_date")) to_date = (*jsonPtr)["to_date"].asString();
 
         std::vector<unsigned char> imageData = decode_base64(base64_image);
         if (imageData.empty()) {
@@ -709,7 +714,7 @@ public:
         if (g_use_mysql && g_database_mysql) {
             // 2. Search for each face in history
             for (const auto& face : faces) {
-                auto matches = g_database_mysql->search_similarity_table(face.embedding, limit, threshold);
+                auto matches = g_database_mysql->search_similarity_table(face.embedding, limit, threshold, from_date, to_date);
                 
                 json face_result;
                 face_result["box"] = {
@@ -1167,6 +1172,22 @@ public:
             return;
         }
 
+        // Parse camera (optional - separate field)
+        std::string camera_id = "";
+        if (jsonPtr->isMember("camera")) {
+            camera_id = (*jsonPtr)["camera"].asString();
+        }
+
+        // Parse metadata (optional - for additional attributes)
+        std::string metadata_json = "";
+        if (jsonPtr->isMember("metadata")) {
+            Json::Value metadata = (*jsonPtr)["metadata"];
+            // Serialize metadata to JSON string for attributes column
+            Json::StreamWriterBuilder writer;
+            writer["indentation"] = "";
+            metadata_json = Json::writeString(writer, metadata);
+        }
+
         // Decode base64
         std::vector<unsigned char> imageData = decode_base64(base64_image);
         if (imageData.empty()) {
@@ -1304,6 +1325,51 @@ public:
             }
 
             result_array.push_back(face_result);
+
+            // Save face embedding to tc_face_similarity table
+            if (g_use_mysql && g_database_mysql && !face.embedding.empty()) {
+                // Crop face from image and encode to base64
+                cv::Rect safe_box = face.box & cv::Rect(0, 0, image.cols, image.rows);
+                if (safe_box.width > 0 && safe_box.height > 0) {
+                    cv::Mat face_crop = image(safe_box);
+                    std::vector<uchar> buf;
+                    cv::imencode(".jpg", face_crop, buf);
+                    std::string face_base64 = "";
+                    // Encode to base64
+                    static const std::string base64_chars = 
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+                    size_t i = 0;
+                    unsigned char char_array_3[3];
+                    unsigned char char_array_4[4];
+                    for (auto byte : buf) {
+                        char_array_3[i++] = byte;
+                        if (i == 3) {
+                            char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
+                            char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
+                            char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
+                            char_array_4[3] = char_array_3[2] & 0x3f;
+                            for (int j = 0; j < 4; j++) face_base64 += base64_chars[char_array_4[j]];
+                            i = 0;
+                        }
+                    }
+                    if (i) {
+                        for (size_t j = i; j < 3; j++) char_array_3[j] = '\0';
+                        char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
+                        char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
+                        char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
+                        for (size_t j = 0; j < i + 1; j++) face_base64 += base64_chars[char_array_4[j]];
+                        while (i++ < 3) face_base64 += '=';
+                    }
+                    
+                    // Insert into tc_face_similarity
+                    long inserted_id = g_database_mysql->insert_similarity(
+                        face.embedding, camera_id, face_base64, metadata_json);
+                    if (inserted_id > 0) {
+                        LOG_INFO << "[FaceLibre] Saved face to tc_face_similarity: id=" << inserted_id 
+                                 << ", camera=" << camera_id;
+                    }
+                }
+            }
 
             // Apply limit if set
             if (limit > 0 && result_array.size() >= static_cast<size_t>(limit)) {

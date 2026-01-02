@@ -65,10 +65,13 @@ The server listens on port `8080` by default.
 | :--- | :--- | :--- |
 | `POST` | `/api/v1/recognition/faces` | Register a new face subject |
 | `GET` | `/api/v1/recognition/faces` | List all registered faces |
-| `POST` | `/api/v1/recognition/recognize` | Recognize faces in an image |
+| `POST` | `/api/v1/recognition/recognize` | Recognize faces + save to history |
+| `POST` | `/api/v1/detection/search` | Search faces with date/threshold filters |
 | `DELETE` | `/api/v1/recognition/faces` | Delete all or specific subject faces |
 | `PUT` | `/api/v1/recognition/subjects/{name}` | Rename a subject |
 | `GET` | `/api/health` | Service health status |
+
+📖 **[Full API Documentation](docs/API.md)** - Complete endpoint reference with examples
 
 Visit `http://localhost:8080/` in your browser for the interactive documentation.
 

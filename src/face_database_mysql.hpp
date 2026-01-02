@@ -178,6 +178,9 @@ public:
         // Set UTF-8
         mysql_set_character_set(conn_, "utf8mb4");
         
+        // Set timezone to Vietnam (UTC+7)
+        mysql_query(conn_, "SET time_zone = '+07:00'");
+        
         ensure_log_table();
         
         return true;
@@ -664,20 +667,48 @@ public:
 
     /**
      * @brief Search for similar faces in tc_face_similarity table
+     * @param query_embedding Query face embedding
+     * @param limit Maximum number of results (default 10)
+     * @param threshold Minimum similarity threshold (default 0.3)
+     * @param from_date Start date filter (format: YYYY-MM-DD or YYYY-MM-DD HH:MM:SS)
+     * @param to_date End date filter (format: YYYY-MM-DD or YYYY-MM-DD HH:MM:SS)
      */
     std::vector<SimilarityResult> search_similarity_table(const std::vector<float>& query_embedding, 
                                                          int limit = 10, 
-                                                         float threshold = 0.3f) {
+                                                         float threshold = 0.3f,
+                                                         const std::string& from_date = "",
+                                                         const std::string& to_date = "") {
         std::lock_guard<std::mutex> lock(mutex_);
         std::vector<SimilarityResult> results;
         
         if (!conn_ || query_embedding.empty()) return results;
 
-        std::string sql = "SELECT id, face_embedding, camera_id, timestamp, attributes, base64_image FROM " + similarity_table_name_ + " ORDER BY timestamp DESC"; 
-        // Note: No limit - scan all records in database
+        // Build SQL with optional date filters
+        std::string sql = "SELECT id, face_embedding, camera_id, timestamp, attributes, base64_image FROM " + similarity_table_name_;
+        
+        std::vector<std::string> conditions;
+        if (!from_date.empty()) {
+            conditions.push_back("timestamp >= '" + escape_string(from_date) + "'");
+        }
+        if (!to_date.empty()) {
+            conditions.push_back("timestamp <= '" + escape_string(to_date) + "'");
+        }
+        
+        if (!conditions.empty()) {
+            sql += " WHERE ";
+            for (size_t i = 0; i < conditions.size(); i++) {
+                if (i > 0) sql += " AND ";
+                sql += conditions[i];
+            }
+        }
+        
+        sql += " ORDER BY timestamp DESC";
         
         std::cerr << "[search_similarity_table] Query embedding dimension: " << query_embedding.size() 
-                  << ", threshold: " << threshold << std::endl;
+                  << ", threshold: " << threshold;
+        if (!from_date.empty()) std::cerr << ", from: " << from_date;
+        if (!to_date.empty()) std::cerr << ", to: " << to_date;
+        std::cerr << std::endl;
         
         if (mysql_query(conn_, sql.c_str()) != 0) {
             std::cerr << "MySQL search error: " << mysql_error(conn_) << std::endl;
@@ -734,5 +765,38 @@ public:
         }
 
         return results;
+    }
+
+    /**
+     * @brief Insert a face embedding into tc_face_similarity table
+     * @param embedding Face embedding vector
+     * @param camera_id Camera ID from metadata
+     * @param base64_image Base64 encoded face image
+     * @param attributes Additional metadata as JSON string
+     * @return The inserted record ID, or -1 on failure
+     */
+    long insert_similarity(const std::vector<float>& embedding,
+                          const std::string& camera_id,
+                          const std::string& base64_image,
+                          const std::string& attributes = "") {
+        std::lock_guard<std::mutex> lock(mutex_);
+        
+        if (!conn_ || embedding.empty()) return -1;
+
+        std::string emb_str = serialize_embedding(embedding);
+        
+        std::string sql = "INSERT INTO " + similarity_table_name_ + 
+                          " (face_embedding, camera_id, base64_image, timestamp, attributes) VALUES ('" +
+                          escape_string(emb_str) + "', '" +
+                          escape_string(camera_id) + "', '" +
+                          escape_string(base64_image) + "', NOW(), '" +
+                          escape_string(attributes) + "')";
+
+        if (mysql_query(conn_, sql.c_str()) != 0) {
+            std::cerr << "MySQL insert similarity error: " << mysql_error(conn_) << std::endl;
+            return -1;
+        }
+
+        return static_cast<long>(mysql_insert_id(conn_));
     }
 };
