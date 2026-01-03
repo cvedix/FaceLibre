@@ -19,6 +19,7 @@ Detect and recognize faces in an image. Automatically saves face embeddings to `
 {
     "file": "<base64_encoded_image>",
     "camera": "camera_001",
+    "timestamp": "2025-12-10T12:00:00Z",
     "metadata": {
         "location": "entrance",
         "custom_field": "value"
@@ -31,7 +32,10 @@ Detect and recognize faces in an image. Automatically saves face embeddings to `
 |-----------|------|----------|---------|-------------|
 | `file` | string | ✅ Yes | - | Base64 encoded image |
 | `camera` | string | ❌ No | "" | Camera ID (saved to `camera_id` column) |
+| `timestamp` | string | ❌ No | NOW() | Custom timestamp (Format: `YYYY-MM-DD HH:MM:SS` or ISO 8601 `YYYY-MM-DDTHH:MM:SSZ`) |
 | `metadata` | object | ❌ No | {} | Additional metadata (saved to `attributes` column as JSON) |
+
+> **Note**: If `timestamp` is not provided, the current server time (Vietnam timezone UTC+7) will be used.
 
 #### Query Parameters (Optional)
 | Parameter | Type | Default | Description |
@@ -65,7 +69,9 @@ Detect and recognize faces in an image. Automatically saves face embeddings to `
 }
 ```
 
-#### Example
+#### Examples
+
+**With Auto Timestamp (NOW):**
 ```bash
 curl -X POST http://localhost:8080/api/v1/recognition/recognize \
   -H "Content-Type: application/json" \
@@ -73,6 +79,29 @@ curl -X POST http://localhost:8080/api/v1/recognition/recognize \
     "file": "/9j/4AAQSkZJRg...",
     "camera": "camera_001",
     "metadata": {"location": "entrance", "building": "A"}
+  }'
+```
+
+**With Custom Timestamp (ISO 8601):**
+```bash
+curl -X POST http://localhost:8080/api/v1/recognition/recognize \
+  -H "Content-Type: application/json" \
+  -d '{
+    "file": "/9j/4AAQSkZJRg...",
+    "camera": "camera_001",
+    "timestamp": "2025-12-10T12:00:00Z",
+    "metadata": {"location": "entrance"}
+  }'
+```
+
+**With Custom Timestamp (MySQL format):**
+```bash
+curl -X POST http://localhost:8080/api/v1/recognition/recognize \
+  -H "Content-Type: application/json" \
+  -d '{
+    "file": "/9j/4AAQSkZJRg...",
+    "camera": "camera_001",
+    "timestamp": "2025-12-10 12:00:00"
   }'
 ```
 

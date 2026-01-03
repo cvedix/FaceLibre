@@ -773,23 +773,41 @@ public:
      * @param camera_id Camera ID from metadata
      * @param base64_image Base64 encoded face image
      * @param attributes Additional metadata as JSON string
+     * @param custom_timestamp Optional custom timestamp (format: YYYY-MM-DD HH:MM:SS or ISO 8601)
      * @return The inserted record ID, or -1 on failure
      */
     long insert_similarity(const std::vector<float>& embedding,
                           const std::string& camera_id,
                           const std::string& base64_image,
-                          const std::string& attributes = "") {
+                          const std::string& attributes = "",
+                          const std::string& custom_timestamp = "") {
         std::lock_guard<std::mutex> lock(mutex_);
         
         if (!conn_ || embedding.empty()) return -1;
 
         std::string emb_str = serialize_embedding(embedding);
         
+        // Use custom timestamp if provided, otherwise use NOW()
+        std::string timestamp_value = "NOW()";
+        if (!custom_timestamp.empty()) {
+            // Parse ISO 8601 format (e.g., 2025-12-10T12:00:00Z) and convert to MySQL format
+            std::string ts = custom_timestamp;
+            // Replace 'T' with space and remove 'Z' if present
+            size_t t_pos = ts.find('T');
+            if (t_pos != std::string::npos) {
+                ts[t_pos] = ' ';
+            }
+            if (!ts.empty() && ts.back() == 'Z') {
+                ts.pop_back();
+            }
+            timestamp_value = "'" + escape_string(ts) + "'";
+        }
+        
         std::string sql = "INSERT INTO " + similarity_table_name_ + 
                           " (face_embedding, camera_id, base64_image, timestamp, attributes) VALUES ('" +
                           escape_string(emb_str) + "', '" +
                           escape_string(camera_id) + "', '" +
-                          escape_string(base64_image) + "', NOW(), '" +
+                          escape_string(base64_image) + "', " + timestamp_value + ", '" +
                           escape_string(attributes) + "')";
 
         if (mysql_query(conn_, sql.c_str()) != 0) {

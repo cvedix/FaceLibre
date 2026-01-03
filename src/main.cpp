@@ -1188,6 +1188,12 @@ public:
             metadata_json = Json::writeString(writer, metadata);
         }
 
+        // Parse custom timestamp (optional - format: YYYY-MM-DD HH:MM:SS or ISO 8601 like 2025-12-10T12:00:00Z)
+        std::string custom_timestamp = "";
+        if (jsonPtr->isMember("timestamp")) {
+            custom_timestamp = (*jsonPtr)["timestamp"].asString();
+        }
+
         // Decode base64
         std::vector<unsigned char> imageData = decode_base64(base64_image);
         if (imageData.empty()) {
@@ -1363,10 +1369,11 @@ public:
                     
                     // Insert into tc_face_similarity
                     long inserted_id = g_database_mysql->insert_similarity(
-                        face.embedding, camera_id, face_base64, metadata_json);
+                        face.embedding, camera_id, face_base64, metadata_json, custom_timestamp);
                     if (inserted_id > 0) {
                         LOG_INFO << "[FaceLibre] Saved face to tc_face_similarity: id=" << inserted_id 
-                                 << ", camera=" << camera_id;
+                                 << ", camera=" << camera_id
+                                 << ", timestamp=" << (custom_timestamp.empty() ? "NOW()" : custom_timestamp);
                     }
                 }
             }
